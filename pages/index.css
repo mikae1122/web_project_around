@@ -2,9 +2,6 @@
 @import url(../vendor/fonts.css);
 @import url(../blocks/footer.css);
 @import url(../blocks/header.css);
-@import url(../blocks/info.css);
-@import url(../blocks/lead.css);
 @import url(../blocks/page.css);
 @import url(../blocks/body.css);
-@import url(../blocks/grid.css);
-@import url(../blocks//citys.css);
+@import url(../blocks/main.css);
