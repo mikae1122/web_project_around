@@ -1,4 +1,4 @@
-.header {
+.header__controle {
   border: none;
   border-bottom: 2px solid #545454;
   margin-top: 3%;
@@ -10,4 +10,28 @@
 .header__logo {
   padding: 0% 0% 2% 0%;
   width: 13%;
+}
+
+@media (max-width: 1200px) {
+  .header__controle {
+    border: none;
+    border-bottom: 2px solid #545454;
+    margin-top: 3%;
+    padding: 0;
+  }
+  .header__logo {
+    padding: 0% 0% 2% 0%;
+    width: 30%;
+  }
+}
+@media (max-width: 700px) {
+  .header__controle {
+    border: none;
+    border-bottom: 2px solid #545454;
+    margin: auto;
+
+    margin-top: 3%;
+
+    padding: 0 0 4% 4%;
+  }
 }
