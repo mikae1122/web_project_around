@@ -128,3 +128,11 @@
     height: 50px;
   }
 }
+@media (max-width: 400px) {
+  .main__interacao--textos {
+    font-family: Inter;
+    font-size: 70%;
+    font-weight: 500;
+    line-height: 26.63px;
+  }
+}
