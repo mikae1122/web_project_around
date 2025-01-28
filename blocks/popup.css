@@ -8,11 +8,19 @@
   justify-content: center;
   align-items: center;
 }
+
 .popup__relative {
+  max-width: 430px;
+  width: 100%;
+  display: none;
+  position: relative;
+}
+.pupup__flex {
   max-width: 430px;
   width: 100%;
 
   position: relative;
+  display: flex;
 }
 .popup__button--conteiner {
   width: 109%;
