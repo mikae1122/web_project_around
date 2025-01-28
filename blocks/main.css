@@ -46,6 +46,9 @@
   background: black;
   text-decoration: none;
 }
+.main__interacao--botao--img:hover {
+  cursor: pointer;
+}
 
 .main__interacao--imagembutoon {
   width: 150px;
