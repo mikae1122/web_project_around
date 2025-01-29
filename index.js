@@ -1,8 +1,16 @@
-const popup = document.querySelector(".popup__relative");
+const popup = document.querySelector(".popup");
+const buttonOpen = document.querySelector(".main__interacao--botao");
+const buttonClose = document.querySelector(".popup__close--button ");
+const butttonClose = document.querySelector(".popup__close--buttonimg");
 
 function Openbutton() {
-  popup.classList.add("popup__flex");
+  popup.classList.add("popup__relative");
 }
 function Closebutton() {
-  popup.classList.remove("popup__flex");
+  console.log("1");
+  popup.classList.remove("popup__relative");
 }
+
+buttonOpen.addEventListener("click", Openbutton);
+buttonClose.addEventListener("click", Closebutton);
+butttonClose.addEventListener("click", Closebutton);

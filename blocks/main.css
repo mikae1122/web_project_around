@@ -40,14 +40,13 @@
   height: 100%;
   background: black;
 }
-.main__interacao--botao--img :hover {
+.main__interacao--botao:hover {
   cursor: pointer;
 }
 .main__interacao--botao--img {
   width: 24px;
   height: 24px;
   background: black;
-  text-decoration: none;
 }
 .main__interacao--botao--img:hover {
   cursor: pointer;

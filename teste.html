@@ -5,15 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="teste.css" />
+    <script src="./java.js"></script>
   </head>
   <body>
+
+
+<button class="botaoopen" onclick="Openpopup()"></button>
+
+
     <div class="popup">
       <div class="popup__relative">
       <div class="popup__button--conteiner">
-      <button class="popup__close--buttonimg">
+      <button class="popup__close--buttonimg"onclick="ClosePopup()">
         <img
           src="./images/Close Icon.png"
-          onclick="closePopup()"
+          
           class="popup__close--img"
           alt="imagem de fechar"
         />
@@ -35,7 +41,7 @@
           </div>
         
         </form>
-        <button class="popup__close--button" onclick="closePopup()">
+        <button class="popup__close--button" onclick="ClosePopup()">
           Salvar
         </button>
       </div>
