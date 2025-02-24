@@ -10,16 +10,16 @@
   align-items: center;
 }
 
-.main__interacao--botoes {
+.main__interacao-botoes {
   display: flex;
   justify-content: space-evenly;
   align-items: baseline;
 }
-.main__interacao--img {
+.main__interacaoimg {
   width: 15%;
   height: 5%;
 }
-.main__interacao--textos {
+.main__interacao-textos {
   margin-left: -24%;
   font-family: Inter;
   font-size: 20px;
@@ -28,31 +28,31 @@
   font-family: Inter;
   padding-left: 0%;
 }
-.main__interacao--texto {
+.main__interacao-texto {
   font-family: Inter;
   font-size: 18px;
   font-weight: 400;
   line-height: 21.78px;
 }
-.main__interacao--botao {
+.main__interacao-botao {
   border: none;
   width: 100%;
   height: 100%;
   background: black;
 }
-.main__interacao--botao:hover {
+.main__interacao-botao:hover {
   cursor: pointer;
 }
-.main__interacao--botao--img {
+.main__interacao--botao-img {
   width: 24px;
   height: 24px;
   background: black;
 }
-.main__interacao--botao--img:hover {
+.main__interacao--botao-img:hover {
   cursor: pointer;
 }
 
-.main__interacao--imagembutoon {
+.main__interacao-imagembutoon {
   width: 150px;
   height: 50px;
 }
@@ -64,33 +64,33 @@
     justify-content: space-between;
     align-items: center;
   }
-  .main__interacao--textos {
+  .main__interacao-textos {
     font-family: Inter;
     font-size: 20px;
     font-weight: 500;
     line-height: 26.63px;
   }
-  .main__interacao--texto {
+  .main__interacao-texto {
     font-family: Inter;
     font-size: 14px;
     font-weight: 400;
     line-height: 16.94px;
   }
-  .main__interacao--img {
+  .main__interacao-img {
     width: 25%;
     height: 5%;
   }
 
-  .main__interacao--botao--img {
+  .main__interacao-botao-img {
     width: 100%;
     height: 100%;
     background: black;
   }
-  .main__interacao--mais {
+  .main__interacao-mais {
     display: flex;
     justify-content: center;
   }
-  .main__interacao--imagembutoon {
+  .main__interacao-imagembutoon {
     width: 150px;
     height: 50px;
   }
@@ -101,40 +101,40 @@
     display: flex;
     flex-direction: column;
   }
-  .main__interacao--textos {
+  .main__interacao-textos {
     font-family: Inter;
     font-size: 15px;
     font-weight: 500;
     line-height: 26.63px;
   }
-  .main__interacao--texto {
+  .main__interacao-texto {
     font-family: Inter;
     font-size: 14px;
     font-weight: 400;
     line-height: 16.94px;
   }
-  .main__interacao--img {
+  .main__interacao-img {
     width: 25%;
     height: 5%;
   }
 
-  .main__interacao--botao--img {
+  .main__interacao-botao-img {
     width: 100%;
     height: 100%;
     background: black;
   }
-  .main__interacao--botoes {
+  .main__interacao-botoes {
     display: flex;
     justify-content: flex-end;
     align-items: baseline;
   }
-  .main__interacao--imagembutoon {
+  .main__interacao-imagembutoon {
     width: 150px;
     height: 50px;
   }
 }
 @media (max-width: 400px) {
-  .main__interacao--textos {
+  .main__interacao-textos {
     font-family: Inter;
     font-size: 70%;
     font-weight: 500;

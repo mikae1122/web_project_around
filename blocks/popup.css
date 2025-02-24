@@ -17,17 +17,17 @@
   flex-direction: row-reverse;
 }
 
-.popup__button--conteiner {
+.popup__button-conteiner {
   width: 9%;
   display: flex;
   flex-direction: row-reverse;
 }
-.popup__close--buttonimg {
+.popup__close-buttonimg {
   background: rgba(2, 2, 2, 0);
   border: none;
   position: absolute;
 }
-.popup__close--buttonimg:hover {
+.popup__close-buttonimg:hover {
   cursor: pointer;
 }
 .popup__conteiner {
@@ -66,7 +66,7 @@
   border-bottom: 2px solid #00000026;
   background-color: transparent;
 }
-.popup__close--button {
+.popup__close-button {
   width: 80%;
   height: 15%;
   margin-left: 10%;
@@ -77,7 +77,7 @@
   font-weight: 400;
   line-height: 21.78px;
 }
-.popup__close--button:hover {
+.popup__close-button:hover {
   cursor: pointer;
 }
 @media (max-width: 500px) {
@@ -88,7 +88,7 @@
     display: flex;
     flex-direction: row-reverse;
   }
-  .popup__button--conteiner {
+  .popup__button-conteiner {
     width: 0%;
     display: flex;
     flex-direction: row-reverse;
