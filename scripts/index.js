@@ -1,7 +1,7 @@
 const popup = document.querySelector(".popup");
-const buttonOpen = document.querySelector(".main__interacao--botao");
-const buttonClose = document.querySelector(".popup__close--button ");
-const butttonClose = document.querySelector(".popup__close--buttonimg");
+const buttonOpen = document.querySelector(".main__interacao-botao");
+const buttonClose = document.querySelector(".popup__close-button ");
+const butttonClose = document.querySelector(".popup__close-buttonimg");
 
 function Openbutton() {
   popup.classList.add("popup__relative");
