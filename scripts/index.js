@@ -2,12 +2,15 @@ const popup = document.querySelector(".popup");
 const buttonOpen = document.querySelector(".main__interacao-botao");
 const buttonClose = document.querySelector(".popup__close-button ");
 const butttonClose = document.querySelector(".popup__close-buttonimg");
+const inputNome = document.querySelector(".popup__input-nome");
+const inputProfissao = document.querySelector(".popup__input-profissao");
 
 function Openbutton() {
   popup.classList.add("popup__relative");
+  inputNome.value = "Jacques Cousteau";
+  inputProfissao.value = "Explorador";
 }
 function Closebutton() {
-  console.log("1");
   popup.classList.remove("popup__relative");
 }
 
