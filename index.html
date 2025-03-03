@@ -37,45 +37,19 @@
             </div>
           </div>
           <div class="main__interacao-mais">
+            <button id="botao" class="main__interacao-maisbotao">
             <img
               src="./images/Add Button.png"
               class="main__interacao-imagembutoon"
               alt="iamgem botao"
             />
+          </button>
           </div>
         </section>
         <section class="main__grid">
-          <img
-            src="./images/Element.png"
-            class="main__grid-img"
-            alt="primeira imagem"
-          />
-          <img
-            src="./images/Element (1).png"
-            class="main__grid-img"
-            alt="segunda imagem"
-          />
-          <img
-            src="./images/Element (2).png"
-            class="main__grid-img"
-            alt="terceira imagem"
-          />
-          <img
-            src="./images/Element (3).png"
-            class="main__grid-img"
-            alt="quarta imagem"
-          />
-          <img
-            src="./images/Element (4).png"
-            class="main__grid-img"
-            alt="quinta imagem"
-          />
-          <img
-            src="./images/Element (5).png"
-            class="main__grid-img"
-            alt="sexta imagem"
-          />
+
         </section>
+        
       </div>
       <footer class="footer">
         <div class="footer__footer">
@@ -89,7 +63,7 @@
           <button class="popup__close-buttonimg">
             <img
               src="./images/Close Icon.png"
-              class="popup__close-img"
+              class="popup__close-cartaoimg"
               alt="imagem de fechar"
             />
           </button>
@@ -119,7 +93,43 @@
         </div>
       </div>
     </div>
-
+    <div class="popup__cartao">
+      <div class="popup__relative-cartao">
+        <div class="popup__button-cartao">
+          <button class="popup__close-cartaobuttonimg">
+            <img
+              src="./images/Close Icon.png"
+              class="popup__close-img"
+              alt="imagem de fechar"
+            />
+          </button>
+        </div>
+        <div class="popup__conteiner-cartao">
+          <h1 class="popup__titulo-cartao">Novo Local</h1>
+          <form class="popup__form-cartao">
+            <div class="popup__input-cartao1">
+              <input
+              placeholder="Titulo"
+                type="text"
+                class="popup__input-titulo"
+                name="titulo"
+                id="titulo"
+              />
+            </div>
+            <div>
+              <input
+              placeholder="Link"
+                type="text"
+                class="popup__input-link"
+                name="link"
+                id="link"
+              />
+            </div>
+          </form>
+          <button class="popup__close-cartaobutton">Criar</button>
+        </div>
+      </div>
+    </div>
     <script src="./scripts/index.js"></script>
   </body>
 </html>
