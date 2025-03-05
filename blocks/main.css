@@ -1,4 +1,7 @@
 .main {
+  max-width: 882px;
+  width: 882px;
+  margin: 0 auto;
   margin-top: 3%;
   margin-left: 13%;
   margin-right: 13%;
@@ -51,10 +54,15 @@
 .main__interacao--botao-img:hover {
   cursor: pointer;
 }
-
+.main__interacao-maisbotao {
+  all: unset;
+}
 .main__interacao-imagembutoon {
   width: 150px;
   height: 50px;
+}
+.main__interacao-imagembutoon:hover {
+  opacity: 60%;
 }
 @media (max-width: 1200px) {
   .main__interacao {

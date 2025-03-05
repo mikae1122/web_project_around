@@ -42,7 +42,13 @@ function adicionarImagem() {
   }
 
   const container = document.createElement("div");
-  container.classList.add("imagem-container");
+  container.classList.add("container");
+
+  const imagemContainer = document.createElement("div");
+  imagemContainer.classList.add("imagem-container-like");
+
+  const botoesContainer = document.createElement("div");
+  botoesContainer.classList.add("imagem-container-img");
 
   const imagem = document.createElement("img");
   imagem.src = linkValor;
@@ -54,29 +60,40 @@ function adicionarImagem() {
   descricao.classList.add("main__grid-titulo");
 
   const botaoDelete = document.createElement("button");
-  botaoDelete.textContent = "🗑️";
+  botaoDelete.innerHTML =
+    '<img src="./images/Trash@2x.png" alt="Delete" class="main__delete-img">';
   botaoDelete.classList.add("btn-delete");
 
   botaoDelete.addEventListener("click", function () {
     container.remove();
   });
 
+  let curtido = false;
   const botaoLike = document.createElement("button");
-  botaoLike.innerHTML = "🤍"; 
+  botaoLike.innerHTML =
+    '<img src="./images/Vector (1).svg" alt="Curtir" class="">';
   botaoLike.classList.add("btn-like");
 
   botaoLike.addEventListener("click", function () {
-    if (botaoLike.innerHTML === "🤍") {
-      botaoLike.innerHTML = "❤️";
+    if (curtido) {
+      botaoLike.innerHTML =
+        '<img src="./images/Vector (1).svg" alt="Curtir" class="">';
     } else {
-      botaoLike.innerHTML = "🤍";
+      botaoLike.innerHTML =
+        '<img src="./images/Union.png" alt="Curtir" class="">';
     }
+    curtido = !curtido;
   });
 
-  container.appendChild(imagem);
-  container.appendChild(descricao);
-  container.appendChild(botaoDelete);
-  container.appendChild(botaoLike); 
+  botoesContainer.appendChild(botaoDelete);
+  botoesContainer.appendChild(imagem);
+
+  imagemContainer.appendChild(botaoLike);
+  imagemContainer.appendChild(descricao);
+
+  container.appendChild(imagemContainer);
+  container.appendChild(botoesContainer);
+
   mainGrid.appendChild(container);
 
   inputLink.value = "";
