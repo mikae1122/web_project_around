@@ -32,13 +32,42 @@ function closeCartao() {
   popupCartao.classList.remove("popup__relative-cartao");
 }
 
-function adicionarImagem() {
-  const linkValor = inputLink.value.trim();
-  const tituloValor = inputTitulo.value.trim();
+const initialCards = [
+  {
+    name: "Vale de Yosemite",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",
+  },
+  {
+    name: "Lago Louise",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg",
+  },
+  {
+    name: "Montanhas Carecas",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_bald-mountains.jpg",
+  },
+  {
+    name: "Latemar",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_latemar.jpg",
+  },
+  {
+    name: "Parque Nacional da Vanoise ",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_vanoise.jpg",
+  },
+  {
+    name: "Lago di Braies",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg",
+  },
+];
 
-  if (linkValor === "" || tituloValor === "") {
-    alert("Por favor, preencha ambos os campos!");
-    return;
+function adicionarImagem(linkValor, tituloValor) {
+  if (!linkValor || !tituloValor) {
+    linkValor = inputLink.value.trim();
+    tituloValor = inputTitulo.value.trim();
+
+    if (linkValor === "" || tituloValor === "") {
+      alert("Por favor, preencha ambos os campos!");
+      return;
+    }
   }
 
   const container = document.createElement("div");
@@ -100,9 +129,17 @@ function adicionarImagem() {
   inputTitulo.value = "";
 }
 
+function carregarImagensIniciais() {
+  initialCards.forEach((card) => {
+    adicionarImagem(card.link, card.name);
+  });
+}
+
 buttonOpen.addEventListener("click", openPopup);
 buttonClose.addEventListener("click", closePopup);
 buttonCloseImg.addEventListener("click", closePopup);
 buttonOpen1.addEventListener("click", openCartao);
 closeButton1.addEventListener("click", closeCartao);
 buttonCriar.addEventListener("click", adicionarImagem);
+
+window.addEventListener("DOMContentLoaded", carregarImagensIniciais);

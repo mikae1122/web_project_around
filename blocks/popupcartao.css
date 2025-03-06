@@ -12,9 +12,7 @@
 .popup__relative-cartao {
   max-width: 430px;
   width: 100%;
-
   border-radius: 10px;
-
   margin: 0 auto;
   display: flex;
   flex-direction: row-reverse;
@@ -32,6 +30,7 @@
 }
 .popup__close-cartaobuttonimg:hover {
   cursor: pointer;
+  opacity: 60%;
 }
 .popup__conteiner-cartao {
   border-radius: 3%;
