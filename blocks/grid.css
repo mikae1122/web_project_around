@@ -4,6 +4,7 @@
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, 2fr);
+  grid-template-rows: repeat(2, 1fr);
   gap: 95px 18px;
   margin-top: 10%;
 }
@@ -69,7 +70,7 @@
 }
 @media (max-width: 1200px) {
   .main__grid {
-    width: 100%;
+    width: 66%;
     grid-template-columns: 1fr 1fr;
     margin: auto;
   }

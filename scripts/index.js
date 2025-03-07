@@ -14,6 +14,25 @@ const mainGrid = document.querySelector(".main__grid");
 const inputLink = document.getElementById("link");
 const inputTitulo = document.getElementById("titulo");
 
+const popupImagem = document.createElement("div");
+popupImagem.classList.add("popup-imagem");
+popupImagem.innerHTML = `
+  <div class="popup-imagem-conteudo">
+    <button class="popup-imagem-close"><img
+              src="./images/Close Icon.png"
+              class="popup__close-img"
+              alt="imagem de fechar"
+            /></button>
+    <img class="popup__img" src="" alt="">
+    <p class="popup-imagem-titulo"></p>
+  </div>
+`;
+document.body.appendChild(popupImagem);
+
+const popupImagemClose = popupImagem.querySelector(".popup-imagem-close");
+const popupImagemImg = popupImagem.querySelector(".popup__img");
+const popupImagemTitulo = popupImagem.querySelector(".popup-imagem-titulo");
+
 function openPopup() {
   popup.classList.add("popup__relative");
   inputNome.value = "Jacques Cousteau";
@@ -84,6 +103,13 @@ function adicionarImagem(linkValor, tituloValor) {
   imagem.alt = tituloValor;
   imagem.classList.add("main__grid-img");
 
+  imagem.addEventListener("click", function () {
+    popupImagem.classList.add("popup-imagem-ativa");
+    popupImagemImg.src = linkValor;
+    popupImagemImg.alt = tituloValor;
+    popupImagemTitulo.textContent = tituloValor;
+  });
+
   const descricao = document.createElement("p");
   descricao.textContent = tituloValor;
   descricao.classList.add("main__grid-titulo");
@@ -134,12 +160,21 @@ function carregarImagensIniciais() {
     adicionarImagem(card.link, card.name);
   });
 }
+popupImagemClose.addEventListener("click", function () {
+  popupImagem.classList.remove("popup-imagem-ativa");
+});
 
-buttonOpen.addEventListener("click", openPopup);
-buttonClose.addEventListener("click", closePopup);
-buttonCloseImg.addEventListener("click", closePopup);
-buttonOpen1.addEventListener("click", openCartao);
-closeButton1.addEventListener("click", closeCartao);
-buttonCriar.addEventListener("click", adicionarImagem);
+popupImagem.addEventListener("click", function (event) {
+  if (event.target === popupImagem) {
+    popupImagem.classList.remove("popup-imagem-ativa");
+  }
+});
 
-window.addEventListener("DOMContentLoaded", carregarImagensIniciais);
+if (buttonOpen) buttonOpen.addEventListener("click", openPopup);
+if (buttonClose) buttonClose.addEventListener("click", closePopup);
+if (buttonCloseImg) buttonCloseImg.addEventListener("click", closePopup);
+if (buttonOpen1) buttonOpen1.addEventListener("click", openCartao);
+if (closeButton1) closeButton1.addEventListener("click", closeCartao);
+if (buttonCriar) buttonCriar.addEventListener("click", adicionarImagem);
+
+window.addEventListener("load", carregarImagensIniciais);
