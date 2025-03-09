@@ -1,10 +1,9 @@
 .header__controle {
   max-width: 882px;
+  width: 100%;
   border: none;
   border-bottom: 2px solid #545454;
-  margin-top: 3%;
-  margin-left: 13%;
-  margin-right: 13%;
+  margin: 3% auto;
   padding: 0;
 }
 
@@ -21,18 +20,16 @@
     padding: 0;
   }
   .header__logo {
-    padding: 0% 0% 2% 0%;
+    padding: 0% 0% 2% 16%;
     width: 30%;
   }
 }
-@media (max-width: 700px) {
+@media (max-width: 730px) {
   .header__controle {
     border: none;
     border-bottom: 2px solid #545454;
     margin: auto;
-
     margin-top: 3%;
-
     padding: 0 0 4% 4%;
   }
 }
