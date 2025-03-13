@@ -73,7 +73,7 @@
 @media (max-width: 1200px) {
   .main__grid {
     margin: 0 auto;
-    width: 80%;
+
     grid-template-columns: 1fr 1fr;
     gap: 18px;
   }
@@ -84,8 +84,7 @@
 
 @media (max-width: 730px) {
   .main__grid {
-    max-width: 730px;
-    width: 100%;
+    width: 80%;
     grid-template-columns: 1fr;
     gap: 18px;
   }
