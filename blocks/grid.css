@@ -2,7 +2,7 @@
   max-width: 882px;
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, 282px);
   grid-template-rows: repeat(2, 1fr);
   gap: 10px;
   margin-top: 5%;
@@ -73,8 +73,7 @@
 @media (max-width: 1200px) {
   .main__grid {
     margin: 0 auto;
-
-    grid-template-columns: 1fr 1fr;
+    justify-content: center;
     gap: 18px;
   }
   .container {
@@ -82,10 +81,23 @@
   }
 }
 
-@media (max-width: 730px) {
+@media (max-width: 768px) {
   .main__grid {
     width: 80%;
-    grid-template-columns: 1fr;
+
     gap: 18px;
+  }
+}
+
+@media (max-width: 320px) {
+  @media (max-width: 320px) {
+    .main__grid {
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      padding: 0;
+
+      gap: 10px;
+    }
   }
 }

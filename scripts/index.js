@@ -19,7 +19,7 @@ popupImagem.classList.add("popup-imagem");
 popupImagem.innerHTML = `
   <div class="popup-imagem-conteudo">
     <button class="popup-imagem-close"><img
-              src="./images/Close Icon.png"
+              src="./images/Close-Icon.png"
               class="popup__close-img"
               alt="imagem de fechar"
             /></button>
@@ -175,6 +175,11 @@ if (buttonClose) buttonClose.addEventListener("click", closePopup);
 if (buttonCloseImg) buttonCloseImg.addEventListener("click", closePopup);
 if (buttonOpen1) buttonOpen1.addEventListener("click", openCartao);
 if (closeButton1) closeButton1.addEventListener("click", closeCartao);
-if (buttonCriar) buttonCriar.addEventListener("click", adicionarImagem);
+if (buttonCriar)
+  buttonCriar.addEventListener("click", function () {
+    console.log("esta funcionando");
+    adicionarImagem();
+    closeCartao();
+  });
 
 window.addEventListener("load", carregarImagensIniciais);

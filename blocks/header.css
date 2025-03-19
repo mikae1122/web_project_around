@@ -24,7 +24,18 @@
     width: 30%;
   }
 }
-@media (max-width: 730px) {
+@media (max-width: 768px) {
+  .header__controle {
+    max-width: none;
+    width: auto;
+    border: none;
+    border-bottom: 2px solid #545454;
+    margin: auto;
+    margin-top: 3%;
+    padding: 0 0 4% 4%;
+  }
+}
+@media (max-width: 320px) {
   .header__controle {
     max-width: none;
     width: auto;
