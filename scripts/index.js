@@ -51,12 +51,15 @@ function validarNome() {
   const nomeValor = inputNome.value.trim();
   if (nomeValor.length === 0) {
     nomeError.textContent = "Preencha o campo.";
+    inputNome.classList.add("input-error"); // Adiciona a classe de erro
   } else {
     if (nomeValor.length < 2 || nomeValor.length > 40) {
       nomeError.textContent =
         "O campo 'Nome' deve conter entre 2 e 40 caracteres.";
+      inputNome.classList.add("input-error"); // Adiciona a classe de erro
     } else {
       nomeError.textContent = "";
+      inputNome.classList.remove("input-error"); // Remove a classe de erro
     }
   }
   verificarEstadoBotaoSalvar(); // Verifica o estado do botão ao validar
@@ -66,11 +69,14 @@ function validarProfissao() {
   const profissaoValor = inputProfissao.value.trim();
   if (profissaoValor.length === 0) {
     profissaoError.textContent = "Preencha o campo";
+    inputProfissao.classList.add("input-error"); // Adiciona a classe de erro
   } else if (profissaoValor.length < 2 || profissaoValor.length > 200) {
     profissaoError.textContent =
-      "O campo 'Profissão' deve conter entre 2 e 200 caracteres.";
+      "O campo 'Sobre' deve conter entre 2 e 200 caracteres.";
+    inputProfissao.classList.add("input-error"); // Adiciona a classe de erro
   } else {
     profissaoError.textContent = "";
+    inputProfissao.classList.remove("input-error"); // Remove a classe de erro
   }
   verificarEstadoBotaoSalvar(); // Verifica o estado do botão ao validar
 }
@@ -105,17 +111,21 @@ function validarCampos() {
   if (nomeValor.length < 2 || nomeValor.length > 40) {
     nomeError.textContent =
       "O campo 'Nome' deve conter entre 2 e 40 caracteres.";
+    inputNome.classList.add("input-error"); // Adiciona a classe de erro
     valid = false;
   } else {
     nomeError.textContent = "";
+    inputNome.classList.remove("input-error"); // Remove a classe de erro
   }
 
   if (profissaoValor.length < 2 || profissaoValor.length > 200) {
     profissaoError.textContent =
       "O campo 'Profissão' deve conter entre 2 e 200 caracteres.";
+    inputProfissao.classList.add("input-error"); // Adiciona a classe de erro
     valid = false;
   } else {
     profissaoError.textContent = "";
+    inputProfissao.classList.remove("input-error"); // Remove a classe de erro
   }
 
   return valid;

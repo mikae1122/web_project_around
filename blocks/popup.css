@@ -85,6 +85,16 @@
   font-weight: 400;
   line-height: 21.78px;
 }
+.input-error {
+  border-bottom: 2px solid red;
+}
+.error-message {
+  color: red;
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+}
 .popup__close-button:hover {
   background-color: #000000cc;
   cursor: pointer;
