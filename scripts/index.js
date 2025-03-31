@@ -2,8 +2,13 @@ const popup = document.querySelector(".popup");
 const buttonOpen = document.querySelector(".main__interacao-botao");
 const buttonClose = document.querySelector(".popup__close-button");
 const buttonCloseImg = document.querySelector(".popup__close-buttonimg");
-const inputNome = document.querySelector(".popup__input-nome");
-const inputProfissao = document.querySelector(".popup__input-profissao");
+const inputNome = document.getElementById("nome");
+const inputProfissao = document.getElementById("Profissao");
+const nomeError = document.getElementById("nome-error");
+const profissaoError = document.getElementById("profissao-error");
+const tituloPerfil = document.querySelector(".main__interacao-titulo");
+const textoPerfil = document.querySelector(".main__interacao-texto");
+const buttonSalvar = document.querySelector(".popup__close-button");
 
 const popupCartao = document.querySelector(".popup__cartao");
 const buttonOpen1 = document.getElementById("botao");
@@ -35,14 +40,55 @@ const popupImagemTitulo = popupImagem.querySelector(".popup-imagem-titulo");
 
 function openPopup() {
   popup.classList.add("popup__relative");
-  inputNome.value = "Jacques Cousteau";
-  inputProfissao.value = "Explorador";
+  inputNome.value = tituloPerfil.textContent;
+  inputProfissao.value = textoPerfil.textContent;
 }
 
 function closePopup() {
   popup.classList.remove("popup__relative");
 }
 
+// Função de validação
+function validarCampos() {
+  let valid = true;
+
+  // Validação do campo "Nome"
+  const nomeValor = inputNome.value.trim();
+  if (nomeValor.length < 2 || nomeValor.length > 40) {
+    nomeError.textContent =
+      "O campo 'Nome' deve conter entre 2 e 40 caracteres.";
+    valid = false;
+  } else {
+    nomeError.textContent = ""; // Limpar mensagem de erro
+  }
+
+  // Validação do campo "Profissão"
+  const profissaoValor = inputProfissao.value.trim();
+  if (profissaoValor.length < 2 || profissaoValor.length > 200) {
+    profissaoError.textContent =
+      "O campo 'Profissão' deve conter entre 2 e 200 caracteres.";
+    valid = false;
+  } else {
+    profissaoError.textContent = ""; // Limpar mensagem de erro
+  }
+
+  return valid;
+}
+
+// Função para salvar o perfil
+function salvarPopup() {
+  if (validarCampos()) {
+    // Se os campos forem válidos, salvar as informações
+    tituloPerfil.textContent = inputNome.value;
+    textoPerfil.textContent = inputProfissao.value;
+    closePopup();
+  } else {
+    // Caso contrário, não fechar o popup e exibir os erros
+    console.log("Campos inválidos.");
+  }
+}
+
+// Função para abrir o popup de edição
 function openCartao() {
   popupCartao.classList.add("popup__relative-cartao");
 }
@@ -160,6 +206,7 @@ function carregarImagensIniciais() {
     adicionarImagem(card.link, card.name);
   });
 }
+
 popupImagemClose.addEventListener("click", function () {
   popupImagem.classList.remove("popup-imagem-ativa");
 });
@@ -173,13 +220,21 @@ popupImagem.addEventListener("click", function (event) {
 if (buttonOpen) buttonOpen.addEventListener("click", openPopup);
 if (buttonClose) buttonClose.addEventListener("click", closePopup);
 if (buttonCloseImg) buttonCloseImg.addEventListener("click", closePopup);
+if (buttonSalvar) buttonSalvar.addEventListener("click", salvarPopup);
 if (buttonOpen1) buttonOpen1.addEventListener("click", openCartao);
 if (closeButton1) closeButton1.addEventListener("click", closeCartao);
 if (buttonCriar)
   buttonCriar.addEventListener("click", function () {
-    console.log("esta funcionando");
     adicionarImagem();
     closeCartao();
   });
 
 window.addEventListener("load", carregarImagensIniciais);
+
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape") {
+    closePopup();
+    closeCartao();
+    popupImagem.classList.remove("popup-imagem-ativa");
+  }
+});
