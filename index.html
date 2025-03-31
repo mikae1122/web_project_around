@@ -68,14 +68,16 @@
 
         <div class="popup__conteiner">
           <h1 class="popup__titulo">Editar perfil</h1>
-          <form class="popup__form">
+          <form class="popup__form" novalidate>
             <div class="popup__input1">
               <input
                 type="text"
                 class="popup__input-nome"
                 name="nome"
                 id="nome"
+                required
               />
+              <span id="nome-error" class="error-message"></span>
             </div>
             <div>
               <input
@@ -83,7 +85,9 @@
                 class="popup__input-profissao"
                 name="Profissao"
                 id="Profissao"
+                required
               />
+              <span id="profissao-error" class="error-message"></span>
             </div>
           </form>
           <button class="popup__close-button">Salvar</button>

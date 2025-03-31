@@ -21,8 +21,7 @@ const inputTitulo = document.getElementById("titulo");
 
 const popupImagem = document.createElement("div");
 popupImagem.classList.add("popup-imagem");
-popupImagem.innerHTML = `
-  <div class="popup-imagem-conteudo">
+popupImagem.innerHTML = `<div class="popup-imagem-conteudo">
     <button class="popup-imagem-close"><img
               src="./images/Close-Icon.png"
               class="popup__close-img"
@@ -30,8 +29,7 @@ popupImagem.innerHTML = `
             /></button>
     <img class="popup__img" src="" alt="">
     <p class="popup-imagem-titulo"></p>
-  </div>
-`;
+  </div>`;
 document.body.appendChild(popupImagem);
 
 const popupImagemClose = popupImagem.querySelector(".popup-imagem-close");
@@ -42,53 +40,97 @@ function openPopup() {
   popup.classList.add("popup__relative");
   inputNome.value = tituloPerfil.textContent;
   inputProfissao.value = textoPerfil.textContent;
+  verificarEstadoBotaoSalvar(); // Verifica o estado do botão quando o popup abre
 }
 
 function closePopup() {
   popup.classList.remove("popup__relative");
 }
 
-// Função de validação
+function validarNome() {
+  const nomeValor = inputNome.value.trim();
+  if (nomeValor.length === 0) {
+    nomeError.textContent = "Preencha o campo.";
+  } else {
+    if (nomeValor.length < 2 || nomeValor.length > 40) {
+      nomeError.textContent =
+        "O campo 'Nome' deve conter entre 2 e 40 caracteres.";
+    } else {
+      nomeError.textContent = "";
+    }
+  }
+  verificarEstadoBotaoSalvar(); // Verifica o estado do botão ao validar
+}
+
+function validarProfissao() {
+  const profissaoValor = inputProfissao.value.trim();
+  if (profissaoValor.length === 0) {
+    profissaoError.textContent = "Preencha o campo";
+  } else if (profissaoValor.length < 2 || profissaoValor.length > 200) {
+    profissaoError.textContent =
+      "O campo 'Profissão' deve conter entre 2 e 200 caracteres.";
+  } else {
+    profissaoError.textContent = "";
+  }
+  verificarEstadoBotaoSalvar(); // Verifica o estado do botão ao validar
+}
+
+inputNome.addEventListener("input", validarNome);
+inputProfissao.addEventListener("input", validarProfissao);
+
+// Função para verificar o estado do botão de salvar
+function verificarEstadoBotaoSalvar() {
+  const nomeValor = inputNome.value.trim();
+  const profissaoValor = inputProfissao.value.trim();
+
+  // Desativa o botão se os campos não forem válidos
+  if (
+    nomeValor.length < 2 ||
+    nomeValor.length > 40 ||
+    profissaoValor.length < 2 ||
+    profissaoValor.length > 200
+  ) {
+    buttonSalvar.disabled = true; // Desativa o botão
+  } else {
+    buttonSalvar.disabled = false; // Habilita o botão
+  }
+}
+
 function validarCampos() {
   let valid = true;
 
-  // Validação do campo "Nome"
   const nomeValor = inputNome.value.trim();
+  const profissaoValor = inputProfissao.value.trim();
+
   if (nomeValor.length < 2 || nomeValor.length > 40) {
     nomeError.textContent =
       "O campo 'Nome' deve conter entre 2 e 40 caracteres.";
     valid = false;
   } else {
-    nomeError.textContent = ""; // Limpar mensagem de erro
+    nomeError.textContent = "";
   }
 
-  // Validação do campo "Profissão"
-  const profissaoValor = inputProfissao.value.trim();
   if (profissaoValor.length < 2 || profissaoValor.length > 200) {
     profissaoError.textContent =
       "O campo 'Profissão' deve conter entre 2 e 200 caracteres.";
     valid = false;
   } else {
-    profissaoError.textContent = ""; // Limpar mensagem de erro
+    profissaoError.textContent = "";
   }
 
   return valid;
 }
 
-// Função para salvar o perfil
 function salvarPopup() {
   if (validarCampos()) {
-    // Se os campos forem válidos, salvar as informações
     tituloPerfil.textContent = inputNome.value;
     textoPerfil.textContent = inputProfissao.value;
     closePopup();
   } else {
-    // Caso contrário, não fechar o popup e exibir os erros
-    console.log("Campos inválidos.");
+    // Não faz nada se os campos forem inválidos
   }
 }
 
-// Função para abrir o popup de edição
 function openCartao() {
   popupCartao.classList.add("popup__relative-cartao");
 }
