@@ -86,6 +86,7 @@
   line-height: 21.78px;
 }
 .popup__close-button:hover {
+  background-color: #000000cc;
   cursor: pointer;
 }
 @media (max-width: 500px) {
