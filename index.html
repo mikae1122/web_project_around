@@ -107,7 +107,7 @@
         </div>
         <div class="popup__conteiner-cartao">
           <h1 class="popup__titulo-cartao">Novo Local</h1>
-          <form class="popup__form-cartao">
+          <form class="popup__form-cartao" novalidate>
             <div class="popup__input-cartao1">
               <input
                 placeholder="Titulo"
@@ -115,7 +115,9 @@
                 class="popup__input-titulo"
                 name="titulo"
                 id="titulo"
+                required
               />
+              <span id="tituloSpan" class="massagen-erro"></span>
             </div>
             <div>
               <input
@@ -124,7 +126,9 @@
                 class="popup__input-link"
                 name="link"
                 id="link"
+                required
               />
+              <span id="linkSpan" class="manssagen-erro"></span>
             </div>
           </form>
           <button class="popup__close-cartaobutton">Criar</button>

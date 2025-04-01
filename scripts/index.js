@@ -2,10 +2,13 @@ const popup = document.querySelector(".popup");
 const buttonOpen = document.querySelector(".main__interacao-botao");
 const buttonClose = document.querySelector(".popup__close-button");
 const buttonCloseImg = document.querySelector(".popup__close-buttonimg");
+
 const inputNome = document.getElementById("nome");
 const inputProfissao = document.getElementById("Profissao");
 const nomeError = document.getElementById("nome-error");
 const profissaoError = document.getElementById("profissao-error");
+const linkError = document.getElementById("linkSpan");
+const tituloError = document.getElementById("tituloSpan");
 const tituloPerfil = document.querySelector(".main__interacao-titulo");
 const textoPerfil = document.querySelector(".main__interacao-texto");
 const buttonSalvar = document.querySelector(".popup__close-button");
@@ -36,11 +39,77 @@ const popupImagemClose = popupImagem.querySelector(".popup-imagem-close");
 const popupImagemImg = popupImagem.querySelector(".popup__img");
 const popupImagemTitulo = popupImagem.querySelector(".popup-imagem-titulo");
 
+function validarTitulo() {
+  let valido = true;
+
+  const tituloValor = inputTitulo.value.trim();
+  if (tituloValor.length === 0) {
+    tituloError.textContent = "Preencha esse campo";
+    inputTitulo.classList.add("input-error");
+    valido = false;
+  } else {
+    if (tituloValor.length < 2 || tituloValor.length > 40) {
+      tituloError.textContent = "O título deve ter entre 2 e 30 caracteres.";
+      inputTitulo.classList.add("input-error");
+      valido = false;
+    } else {
+      tituloError.textContent = "";
+      inputTitulo.classList.remove("input-error");
+    }
+  }
+  return valido;
+}
+function validarLink() {
+  const linkValor = inputLink.value.trim();
+  const regexURL = /^(https?:\/\/.*\.(?:png|jpg|jpeg|gif|svg))$/i;
+  let valido = true;
+
+  if (linkValor.length === 0) {
+    linkError.textContent = "Preencha esse campo";
+    inputLink.classList.add("input-error");
+    valido = false;
+  } else if (!regexURL.test(linkValor)) {
+    linkError.textContent = "Insira uma URL válida de imagem.";
+    inputLink.classList.add("input-error");
+    valido = false;
+  } else {
+    linkError.textContent = "";
+    inputLink.classList.remove("input-error");
+  }
+
+  return valido;
+}
+
+inputTitulo.addEventListener("input", function () {
+  validarTitulo();
+  verificarEstadoBotaoSalvarCartao();
+});
+inputLink.addEventListener("input", function () {
+  validarLink();
+  verificarEstadoBotaoSalvarCartao();
+});
+
+function verificarEstadoBotaoSalvarCartao() {
+  const tituloValor = inputTitulo.value.trim();
+  const linkValor = inputLink.value.trim();
+
+  if (
+    tituloValor.length < 2 ||
+    tituloValor.length > 40 ||
+    linkValor.length === 0 ||
+    !/^(https?:\/\/.*\.(?:png|jpg|jpeg|gif|svg))$/i.test(linkValor)
+  ) {
+    buttonCriar.disabled = true;
+  } else {
+    buttonCriar.disabled = false;
+  }
+}
+
 function openPopup() {
   popup.classList.add("popup__relative");
   inputNome.value = tituloPerfil.textContent;
   inputProfissao.value = textoPerfil.textContent;
-  verificarEstadoBotaoSalvar(); // Verifica o estado do botão quando o popup abre
+  verificarEstadoBotaoSalvar();
 }
 
 function closePopup() {
@@ -51,54 +120,68 @@ function validarNome() {
   const nomeValor = inputNome.value.trim();
   if (nomeValor.length === 0) {
     nomeError.textContent = "Preencha o campo.";
-    inputNome.classList.add("input-error"); // Adiciona a classe de erro
+    inputNome.classList.add("input-error");
   } else {
     if (nomeValor.length < 2 || nomeValor.length > 40) {
       nomeError.textContent =
         "O campo 'Nome' deve conter entre 2 e 40 caracteres.";
-      inputNome.classList.add("input-error"); // Adiciona a classe de erro
+      inputNome.classList.add("input-error");
     } else {
       nomeError.textContent = "";
-      inputNome.classList.remove("input-error"); // Remove a classe de erro
+      inputNome.classList.remove("input-error");
     }
   }
-  verificarEstadoBotaoSalvar(); // Verifica o estado do botão ao validar
+  verificarEstadoBotaoSalvar();
 }
 
 function validarProfissao() {
   const profissaoValor = inputProfissao.value.trim();
   if (profissaoValor.length === 0) {
     profissaoError.textContent = "Preencha o campo";
-    inputProfissao.classList.add("input-error"); // Adiciona a classe de erro
+    inputProfissao.classList.add("input-error");
   } else if (profissaoValor.length < 2 || profissaoValor.length > 200) {
     profissaoError.textContent =
       "O campo 'Sobre' deve conter entre 2 e 200 caracteres.";
-    inputProfissao.classList.add("input-error"); // Adiciona a classe de erro
+    inputProfissao.classList.add("input-error");
   } else {
     profissaoError.textContent = "";
-    inputProfissao.classList.remove("input-error"); // Remove a classe de erro
+    inputProfissao.classList.remove("input-error");
   }
-  verificarEstadoBotaoSalvar(); // Verifica o estado do botão ao validar
+  verificarEstadoBotaoSalvar();
 }
 
-inputNome.addEventListener("input", validarNome);
-inputProfissao.addEventListener("input", validarProfissao);
+inputNome.addEventListener("input", function () {
+  validarNome();
+  verificarEstadoBotaoSalvar(); // Verifica o estado do botão ao digitar
+});
+inputProfissao.addEventListener("input", function () {
+  validarProfissao();
+  verificarEstadoBotaoSalvar(); // Verifica o estado do botão ao digitar
+});
 
-// Função para verificar o estado do botão de salvar
+// Validação dos campos na popup de cartão
+inputTitulo.addEventListener("input", function () {
+  validarTitulo();
+  verificarEstadoBotaoSalvarCartao(); // Verifica o estado do botão ao digitar
+});
+inputLink.addEventListener("input", function () {
+  validarLink();
+  verificarEstadoBotaoSalvarCartao(); // Verifica o estado do botão ao digitar
+});
+
 function verificarEstadoBotaoSalvar() {
   const nomeValor = inputNome.value.trim();
   const profissaoValor = inputProfissao.value.trim();
 
-  // Desativa o botão se os campos não forem válidos
   if (
     nomeValor.length < 2 ||
     nomeValor.length > 40 ||
     profissaoValor.length < 2 ||
     profissaoValor.length > 200
   ) {
-    buttonSalvar.disabled = true; // Desativa o botão
+    buttonSalvar.disabled = true;
   } else {
-    buttonSalvar.disabled = false; // Habilita o botão
+    buttonSalvar.disabled = false;
   }
 }
 
@@ -111,21 +194,21 @@ function validarCampos() {
   if (nomeValor.length < 2 || nomeValor.length > 40) {
     nomeError.textContent =
       "O campo 'Nome' deve conter entre 2 e 40 caracteres.";
-    inputNome.classList.add("input-error"); // Adiciona a classe de erro
+    inputNome.classList.add("input-error");
     valid = false;
   } else {
     nomeError.textContent = "";
-    inputNome.classList.remove("input-error"); // Remove a classe de erro
+    inputNome.classList.remove("input-error");
   }
 
   if (profissaoValor.length < 2 || profissaoValor.length > 200) {
     profissaoError.textContent =
       "O campo 'Profissão' deve conter entre 2 e 200 caracteres.";
-    inputProfissao.classList.add("input-error"); // Adiciona a classe de erro
+    inputProfissao.classList.add("input-error");
     valid = false;
   } else {
     profissaoError.textContent = "";
-    inputProfissao.classList.remove("input-error"); // Remove a classe de erro
+    inputProfissao.classList.remove("input-error");
   }
 
   return valid;
@@ -137,12 +220,12 @@ function salvarPopup() {
     textoPerfil.textContent = inputProfissao.value;
     closePopup();
   } else {
-    // Não faz nada se os campos forem inválidos
   }
 }
 
 function openCartao() {
   popupCartao.classList.add("popup__relative-cartao");
+  verificarEstadoBotaoSalvarCartao();
 }
 
 function closeCartao() {
@@ -177,16 +260,6 @@ const initialCards = [
 ];
 
 function adicionarImagem(linkValor, tituloValor) {
-  if (!linkValor || !tituloValor) {
-    linkValor = inputLink.value.trim();
-    tituloValor = inputTitulo.value.trim();
-
-    if (linkValor === "" || tituloValor === "") {
-      alert("Por favor, preencha ambos os campos!");
-      return;
-    }
-  }
-
   const container = document.createElement("div");
   container.classList.add("container");
 
@@ -275,13 +348,20 @@ if (buttonCloseImg) buttonCloseImg.addEventListener("click", closePopup);
 if (buttonSalvar) buttonSalvar.addEventListener("click", salvarPopup);
 if (buttonOpen1) buttonOpen1.addEventListener("click", openCartao);
 if (closeButton1) closeButton1.addEventListener("click", closeCartao);
-if (buttonCriar)
+if (buttonCriar) {
   buttonCriar.addEventListener("click", function () {
-    adicionarImagem();
-    closeCartao();
+    if (validarLink() && validarTitulo()) {
+      adicionarImagem(inputLink.value, inputTitulo.value);
+      closeCartao();
+    }
   });
+}
 
-window.addEventListener("load", carregarImagensIniciais);
+window.addEventListener("load", function () {
+  carregarImagensIniciais();
+  verificarEstadoBotaoSalvar();
+  verificarEstadoBotaoSalvarCartao();
+});
 
 document.addEventListener("keydown", function (event) {
   if (event.key === "Escape") {

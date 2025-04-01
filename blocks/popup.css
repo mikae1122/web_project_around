@@ -30,6 +30,10 @@
 .popup__close-buttonimg:hover {
   cursor: pointer;
 }
+.popup__close-buttonimg:disabled {
+  color: white;
+  background: #ffffff;
+}
 .popup__conteiner {
   border-radius: 3%;
   margin-top: 8%;

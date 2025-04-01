@@ -92,6 +92,11 @@
   cursor: pointer;
   background: #000000cc;
 }
+
+.popup__close-cartaobutton:disabled {
+  color: azure;
+  background: #0000003f;
+}
 .popup__close-img:hover {
   color: #000000;
 }
