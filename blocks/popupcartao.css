@@ -103,6 +103,9 @@
 button:hover {
   background: #8a0e0e00;
 }
+.input-error {
+  border-bottom: 2px solid red;
+}
 
 @media (max-width: 500px) {
   .popup__relative-cartao {

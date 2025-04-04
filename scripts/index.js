@@ -1,3 +1,4 @@
+//---------------- criação das constantes --------------//
 const popup = document.querySelector(".popup");
 const buttonOpen = document.querySelector(".main__interacao-botao");
 const buttonClose = document.querySelector(".popup__close-button");
@@ -38,7 +39,9 @@ document.body.appendChild(popupImagem);
 const popupImagemClose = popupImagem.querySelector(".popup-imagem-close");
 const popupImagemImg = popupImagem.querySelector(".popup__img");
 const popupImagemTitulo = popupImagem.querySelector(".popup-imagem-titulo");
+//--------------- validação dos formularios -----------------//
 
+//--------------- validalidando Titulo -----------------//
 function validarTitulo() {
   let valido = true;
 
@@ -59,6 +62,7 @@ function validarTitulo() {
   }
   return valido;
 }
+//--------------- validalidando Link -----------------//
 function validarLink() {
   const linkValor = inputLink.value.trim();
   const regexURL = /^(https?:\/\/.*\.(?:png|jpg|jpeg|gif|svg))$/i;
@@ -79,43 +83,7 @@ function validarLink() {
 
   return valido;
 }
-
-inputTitulo.addEventListener("input", function () {
-  validarTitulo();
-  verificarEstadoBotaoSalvarCartao();
-});
-inputLink.addEventListener("input", function () {
-  validarLink();
-  verificarEstadoBotaoSalvarCartao();
-});
-
-function verificarEstadoBotaoSalvarCartao() {
-  const tituloValor = inputTitulo.value.trim();
-  const linkValor = inputLink.value.trim();
-
-  if (
-    tituloValor.length < 2 ||
-    tituloValor.length > 40 ||
-    linkValor.length === 0 ||
-    !/^(https?:\/\/.*\.(?:png|jpg|jpeg|gif|svg))$/i.test(linkValor)
-  ) {
-    buttonCriar.disabled = true;
-  } else {
-    buttonCriar.disabled = false;
-  }
-}
-
-function openPopup() {
-  popup.classList.add("popup__relative");
-  inputNome.value = tituloPerfil.textContent;
-  inputProfissao.value = textoPerfil.textContent;
-  verificarEstadoBotaoSalvar();
-}
-
-function closePopup() {
-  popup.classList.remove("popup__relative");
-}
-
+//--------------- validalidando Nome -----------------//
 function validarNome() {
   const nomeValor = inputNome.value.trim();
   if (nomeValor.length === 0) {
@@ -133,7 +101,7 @@ function validarNome() {
   }
   verificarEstadoBotaoSalvar();
 }
-
+//--------------- validalidando Profissão -----------------//
 function validarProfissao() {
   const profissaoValor = inputProfissao.value.trim();
   if (profissaoValor.length === 0) {
@@ -148,41 +116,6 @@ function validarProfissao() {
     inputProfissao.classList.remove("input-error");
   }
   verificarEstadoBotaoSalvar();
-}
-
-inputNome.addEventListener("input", function () {
-  validarNome();
-  verificarEstadoBotaoSalvar(); // Verifica o estado do botão ao digitar
-});
-inputProfissao.addEventListener("input", function () {
-  validarProfissao();
-  verificarEstadoBotaoSalvar(); // Verifica o estado do botão ao digitar
-});
-
-// Validação dos campos na popup de cartão
-inputTitulo.addEventListener("input", function () {
-  validarTitulo();
-  verificarEstadoBotaoSalvarCartao(); // Verifica o estado do botão ao digitar
-});
-inputLink.addEventListener("input", function () {
-  validarLink();
-  verificarEstadoBotaoSalvarCartao(); // Verifica o estado do botão ao digitar
-});
-
-function verificarEstadoBotaoSalvar() {
-  const nomeValor = inputNome.value.trim();
-  const profissaoValor = inputProfissao.value.trim();
-
-  if (
-    nomeValor.length < 2 ||
-    nomeValor.length > 40 ||
-    profissaoValor.length < 2 ||
-    profissaoValor.length > 200
-  ) {
-    buttonSalvar.disabled = true;
-  } else {
-    buttonSalvar.disabled = false;
-  }
 }
 
 function validarCampos() {
@@ -214,6 +147,69 @@ function validarCampos() {
   return valid;
 }
 
+//---------------- exibindo a mensagem enquanto esta escrevendo -------------//
+inputTitulo.addEventListener("input", function () {
+  validarTitulo();
+  verificarEstadoBotaoSalvarCartao();
+});
+inputLink.addEventListener("input", function () {
+  validarLink();
+  verificarEstadoBotaoSalvarCartao();
+});
+
+inputNome.addEventListener("input", function () {
+  validarNome();
+  verificarEstadoBotaoSalvar();
+});
+inputProfissao.addEventListener("input", function () {
+  validarProfissao();
+  verificarEstadoBotaoSalvar();
+});
+
+//---------------- função para abrir o popup ---------------//
+function openPopup() {
+  popup.classList.add("popup__relative");
+  inputNome.value = tituloPerfil.textContent;
+  inputProfissao.value = textoPerfil.textContent;
+  verificarEstadoBotaoSalvar();
+}
+//---------------- função para fechar o popup ---------------//
+function closePopup() {
+  popup.classList.remove("popup__relative");
+}
+//----------------- verificando o botão de salvar do popup__cartão ---------------//
+function verificarEstadoBotaoSalvarCartao() {
+  const tituloValor = inputTitulo.value.trim();
+  const linkValor = inputLink.value.trim();
+
+  if (
+    tituloValor.length < 2 ||
+    tituloValor.length > 40 ||
+    linkValor.length === 0 ||
+    !/^(https?:\/\/.*\.(?:png|jpg|jpeg|gif|svg))$/i.test(linkValor)
+  ) {
+    buttonCriar.disabled = true;
+  } else {
+    buttonCriar.disabled = false;
+  }
+}
+//----------------- verificando o botão de salvar do popup ---------------//
+function verificarEstadoBotaoSalvar() {
+  const nomeValor = inputNome.value.trim();
+  const profissaoValor = inputProfissao.value.trim();
+
+  if (
+    nomeValor.length < 2 ||
+    nomeValor.length > 40 ||
+    profissaoValor.length < 2 ||
+    profissaoValor.length > 200
+  ) {
+    buttonSalvar.disabled = true;
+  } else {
+    buttonSalvar.disabled = false;
+  }
+}
+//---------------- função de salvar -----------------//
 function salvarPopup() {
   if (validarCampos()) {
     tituloPerfil.textContent = inputNome.value;
@@ -222,43 +218,55 @@ function salvarPopup() {
   } else {
   }
 }
-
+//----------------- função de abrir popup__cartão-------------------//
 function openCartao() {
   popupCartao.classList.add("popup__relative-cartao");
   verificarEstadoBotaoSalvarCartao();
 }
-
+//---------------- função de fechar popup__cartão----------------//
 function closeCartao() {
   popupCartao.classList.remove("popup__relative-cartao");
 }
+//----------------- evanto de ouvidoria para fechar janelas clicando fora delas-------------//
+document.addEventListener("click", function (event) {
+  if (
+    popup.classList.contains("popup__relative") &&
+    !popup.contains(event.target) &&
+    !buttonOpen.contains(event.target)
+  ) {
+    closePopup();
+  }
 
-const initialCards = [
-  {
-    name: "Vale de Yosemite",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",
-  },
-  {
-    name: "Lago Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg",
-  },
-  {
-    name: "Montanhas Carecas",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_latemar.jpg",
-  },
-  {
-    name: "Parque Nacional da Vanoise ",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg",
-  },
-];
+  if (
+    popupCartao.classList.contains("popup__relative-cartao") &&
+    !popupCartao.contains(event.target) &&
+    !buttonOpen1.contains(event.target)
+  ) {
+    closeCartao();
+  }
 
+  if (
+    popupImagem.classList.contains("popup-imagem-ativa") &&
+    !popupImagem.querySelector(".popup-imagem-conteudo").contains(event.target)
+  ) {
+    popupImagem.classList.remove("popup-imagem-ativa");
+  }
+});
+
+popup.addEventListener("click", function (event) {
+  event.stopPropagation();
+});
+
+popupCartao.addEventListener("click", function (event) {
+  event.stopPropagation();
+});
+
+popupImagem
+  .querySelector(".popup-imagem-conteudo")
+  .addEventListener("click", function (event) {
+    event.stopPropagation();
+  });
+//---------------- função para adcionar imagem ----------------//
 function adicionarImagem(linkValor, tituloValor) {
   const container = document.createElement("div");
   container.classList.add("container");
@@ -275,6 +283,7 @@ function adicionarImagem(linkValor, tituloValor) {
   imagem.classList.add("main__grid-img");
 
   imagem.addEventListener("click", function () {
+    console.log("Imagem clicada:", tituloValor, linkValor); // Depuração
     popupImagem.classList.add("popup-imagem-ativa");
     popupImagemImg.src = linkValor;
     popupImagemImg.alt = tituloValor;
@@ -325,17 +334,47 @@ function adicionarImagem(linkValor, tituloValor) {
   inputLink.value = "";
   inputTitulo.value = "";
 }
-
+//----------------- função para carreagar as imagens iniciais ---------------//
 function carregarImagensIniciais() {
   initialCards.forEach((card) => {
     adicionarImagem(card.link, card.name);
   });
 }
+//---------------- vetor das imagens inicias ------------//
+const initialCards = [
+  {
+    name: "Vale de Yosemite",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",
+  },
+  {
+    name: "Lago Louise",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg",
+  },
+  {
+    name: "Montanhas Carecas",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_bald-mountains.jpg",
+  },
+  {
+    name: "Latemar",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_latemar.jpg",
+  },
+  {
+    name: "Parque Nacional da Vanoise ",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_vanoise.jpg",
+  },
+  {
+    name: "Lago di Braies",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg",
+  },
+];
+//--------------- eventos de ouvidoria --------------//
 
+//-------------- para abrir as imagens -------------//
 popupImagemClose.addEventListener("click", function () {
   popupImagem.classList.remove("popup-imagem-ativa");
 });
 
+//-------------- para fechalas clicando fora delas  ----------//
 popupImagem.addEventListener("click", function (event) {
   if (event.target === popupImagem) {
     popupImagem.classList.remove("popup-imagem-ativa");
@@ -356,13 +395,13 @@ if (buttonCriar) {
     }
   });
 }
-
+//----------------- carregar funções no inicio do cite ----------------//
 window.addEventListener("load", function () {
   carregarImagensIniciais();
   verificarEstadoBotaoSalvar();
   verificarEstadoBotaoSalvarCartao();
 });
-
+//--------------- fechar janelas popup usando a tecla esc ---------------//
 document.addEventListener("keydown", function (event) {
   if (event.key === "Escape") {
     closePopup();
