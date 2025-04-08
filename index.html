@@ -72,7 +72,7 @@
             <div class="popup__input1">
               <input
                 type="text"
-                class="popup__input-nome"
+                class="popup__input popup__input-nome"
                 name="nome"
                 id="nome"
                 required
@@ -82,15 +82,16 @@
             <div>
               <input
                 type="text"
-                class="popup__input-profissao"
-                name="Profissao"
-                id="Profissao"
+                class="popup__input popup__input-profissao"
+                name="profissao"
+                id="profissao"
                 required
               />
               <span id="profissao-error" class="error-message"></span>
             </div>
+
+            <button type="submit" class="popup__close-button">Salvar</button>
           </form>
-          <button class="popup__close-button">Salvar</button>
         </div>
       </div>
     </div>
@@ -112,26 +113,29 @@
               <input
                 placeholder="Titulo"
                 type="text"
-                class="popup__input-titulo"
+                class="popup__input popup__input-titulo"
                 name="titulo"
                 id="titulo"
                 required
               />
-              <span id="tituloSpan" class="error-message"></span>
+              <span id="titulo-error" class="error-message"></span>
             </div>
             <div>
               <input
                 placeholder="Link"
-                type="text"
-                class="popup__input-link"
+                type="url"
+                class="popup__input popup__input-link"
                 name="link"
                 id="link"
                 required
               />
-              <span id="linkSpan" class="error-message"></span>
+              <span id="link-error" class="error-message"></span>
             </div>
+
+            <button type="submit" class="popup__close-cartaobutton">
+              Criar
+            </button>
           </form>
-          <button class="popup__close-cartaobutton">Criar</button>
         </div>
       </div>
     </div>
