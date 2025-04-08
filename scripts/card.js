@@ -1,3 +1,4 @@
+//------------------------ Classe Card ------------------------//
 export class Card {
   _title;
   _imageLink;
@@ -9,15 +10,16 @@ export class Card {
     this._templateSelector = templateSelector;
   }
 
-  // Método público para retornar o elemento do card pronto
+  // Método público que retorna o card pronto com eventos
   getCardElement() {
-    const cardElement = this._createCardElement();
-    this._addEventListeners(cardElement);
+    const cardElement = this._createCardElement(); // Cria o HTML do card
+    this._addEventListeners(cardElement); // Adiciona eventos ao card
     return cardElement;
   }
 
-  // Método privado: Cria a estrutura HTML do card
+  //------------------------ Criação do elemento Card ------------------------//
   _createCardElement() {
+    // Criação da estrutura principal do card
     const container = document.createElement("div");
     container.classList.add("container");
 
@@ -27,24 +29,29 @@ export class Card {
     const botoesContainer = document.createElement("div");
     botoesContainer.classList.add("imagem-container-img");
 
+    // Imagem do card
     const imagem = document.createElement("img");
     imagem.src = this._imageLink;
     imagem.alt = this._title;
     imagem.classList.add("main__grid-img");
 
+    // Título (descrição) da imagem
     const descricao = document.createElement("p");
     descricao.textContent = this._title;
     descricao.classList.add("main__grid-titulo");
 
+    // Botão de deletar card
     const botaoDelete = document.createElement("button");
     botaoDelete.innerHTML =
       '<img src="./images/Trash@2x.png" alt="Delete" class="main__delete-img">';
     botaoDelete.classList.add("btn-delete");
 
+    // Botão de curtir (like)
     const botaoLike = document.createElement("button");
     botaoLike.innerHTML = '<img src="./images/Vector (1).svg" alt="Curtir">';
     botaoLike.classList.add("btn-like");
 
+    // Montagem da estrutura de botões e imagem
     botoesContainer.appendChild(botaoDelete);
     botoesContainer.appendChild(imagem);
 
@@ -54,7 +61,7 @@ export class Card {
     container.appendChild(imagemContainer);
     container.appendChild(botoesContainer);
 
-    // Armazena elementos para eventos
+    // Armazenando elementos no container para acesso posterior
     container._image = imagem;
     container._deleteBtn = botaoDelete;
     container._likeBtn = botaoLike;
@@ -62,7 +69,7 @@ export class Card {
     return container;
   }
 
-  // Método privado: Adiciona os ouvintes de eventos
+  //------------------------ Eventos do Card ------------------------//
   _addEventListeners(cardElement) {
     const imagem = cardElement._image;
     const botaoDelete = cardElement._deleteBtn;
@@ -70,20 +77,25 @@ export class Card {
 
     let curtido = false;
 
+    // Clique na imagem abre o popup
     imagem.addEventListener("click", () => {
       this._handleImageClick();
     });
 
+    // Clique no botão de deletar remove o card
     botaoDelete.addEventListener("click", () => {
       this._handleDelete(cardElement);
     });
 
+    // Clique no botão de curtir alterna o estado
     botaoLike.addEventListener("click", () => {
       curtido = this._handleLike(botaoLike, curtido);
     });
   }
 
-  // Manipulador privado: abrir popup de imagem
+  //------------------------ Ações dos botões ------------------------//
+
+  // Mostra a imagem em destaque no popup
   _handleImageClick() {
     popupImagem.classList.add("popup-imagem-ativa");
     popupImagemImg.src = this._imageLink;
@@ -91,12 +103,12 @@ export class Card {
     popupImagemTitulo.textContent = this._title;
   }
 
-  // Manipulador privado: remover card
+  // Remove o card do DOM
   _handleDelete(cardElement) {
     cardElement.remove();
   }
 
-  // Manipulador privado: curtir/descurtir
+  // Alterna o estado de curtida e retorna o novo estado
   _handleLike(botaoLike, curtido) {
     botaoLike.innerHTML = curtido
       ? '<img src="./images/Vector (1).svg" alt="Curtir">'
