@@ -1,3 +1,4 @@
+import { Card } from "./card.js";
 //---------------- criação das constantes --------------//
 const popup = document.querySelector(".popup");
 const buttonOpen = document.querySelector(".main__interacao-botao");
@@ -267,79 +268,24 @@ popupImagem
     event.stopPropagation();
   });
 //---------------- função para adcionar imagem ----------------//
-function adicionarImagem(linkValor, tituloValor) {
-  const container = document.createElement("div");
-  container.classList.add("container");
-
-  const imagemContainer = document.createElement("div");
-  imagemContainer.classList.add("imagem-container-like");
-
-  const botoesContainer = document.createElement("div");
-  botoesContainer.classList.add("imagem-container-img");
-
-  const imagem = document.createElement("img");
-  imagem.src = linkValor;
-  imagem.alt = tituloValor;
-  imagem.classList.add("main__grid-img");
-
-  imagem.addEventListener("click", function () {
-    console.log("Imagem clicada:", tituloValor, linkValor); // Depuração
-    popupImagem.classList.add("popup-imagem-ativa");
-    popupImagemImg.src = linkValor;
-    popupImagemImg.alt = tituloValor;
-    popupImagemTitulo.textContent = tituloValor;
-  });
-
-  const descricao = document.createElement("p");
-  descricao.textContent = tituloValor;
-  descricao.classList.add("main__grid-titulo");
-
-  const botaoDelete = document.createElement("button");
-  botaoDelete.innerHTML =
-    '<img src="./images/Trash@2x.png" alt="Delete" class="main__delete-img">';
-  botaoDelete.classList.add("btn-delete");
-
-  botaoDelete.addEventListener("click", function () {
-    container.remove();
-  });
-
-  let curtido = false;
-  const botaoLike = document.createElement("button");
-  botaoLike.innerHTML =
-    '<img src="./images/Vector (1).svg" alt="Curtir" class="">';
-  botaoLike.classList.add("btn-like");
-
-  botaoLike.addEventListener("click", function () {
-    if (curtido) {
-      botaoLike.innerHTML =
-        '<img src="./images/Vector (1).svg" alt="Curtir" class="">';
-    } else {
-      botaoLike.innerHTML =
-        '<img src="./images/Union.png" alt="Curtir" class="">';
-    }
-    curtido = !curtido;
-  });
-
-  botoesContainer.appendChild(botaoDelete);
-  botoesContainer.appendChild(imagem);
-
-  imagemContainer.appendChild(botaoLike);
-  imagemContainer.appendChild(descricao);
-
-  container.appendChild(imagemContainer);
-  container.appendChild(botoesContainer);
-
-  mainGrid.appendChild(container);
+function adicionarImagem(link, titulo) {
+  const card = new Card(titulo, link, ".container");
+  const cardElement = card.getCardElement();
+  mainGrid.appendChild(cardElement);
 
   inputLink.value = "";
   inputTitulo.value = "";
 }
+
 //----------------- função para carreagar as imagens iniciais ---------------//
 function carregarImagensIniciais() {
-  initialCards.forEach((card) => {
-    adicionarImagem(card.link, card.name);
+  initialCards.forEach((cardData) => {
+    const card = new Card(cardData.name, cardData.link, ".container");
+    const cardElement = card.getCardElement();
+    mainGrid.appendChild(cardElement);
   });
 }
+
 //---------------- vetor das imagens inicias ------------//
 const initialCards = [
   {
