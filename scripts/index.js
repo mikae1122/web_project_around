@@ -151,7 +151,7 @@ function handleCardClick(name, link) {
 function adicionarImagem(link, titulo) {
   const card = new Card(titulo, link, ".container", handleCardClick);
   const cardElement = card.getCardElement();
-  mainGrid.appendChild(cardElement);
+  mainGrid.prepend(cardElement);
 
   inputLink.value = "";
   inputTitulo.value = "";
