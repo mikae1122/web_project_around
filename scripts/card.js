@@ -3,17 +3,19 @@ export class Card {
   _title;
   _imageLink;
   _templateSelector;
+  _handleImageClick;
 
-  constructor(title, imageLink, templateSelector) {
+  constructor(title, imageLink, templateSelector, handleImageClick) {
     this._title = title;
     this._imageLink = imageLink;
     this._templateSelector = templateSelector;
+    this._handleImageClick = handleImageClick;
   }
 
   // Método público que retorna o card pronto com eventos
   getCardElement() {
-    const cardElement = this._createCardElement(); // Cria o HTML do card
-    this._addEventListeners(cardElement); // Adiciona eventos ao card
+    const cardElement = this._createCardElement();
+    this._addEventListeners(cardElement);
     return cardElement;
   }
 
@@ -79,7 +81,9 @@ export class Card {
 
     // Clique na imagem abre o popup
     imagem.addEventListener("click", () => {
-      this._handleImageClick();
+      if (this._handleImageClick) {
+        this._handleImageClick(this._title, this._imageLink);
+      }
     });
 
     // Clique no botão de deletar remove o card
@@ -94,21 +98,10 @@ export class Card {
   }
 
   //------------------------ Ações dos botões ------------------------//
-
-  // Mostra a imagem em destaque no popup
-  _handleImageClick() {
-    popupImagem.classList.add("popup-imagem-ativa");
-    popupImagemImg.src = this._imageLink;
-    popupImagemImg.alt = this._title;
-    popupImagemTitulo.textContent = this._title;
-  }
-
-  // Remove o card do DOM
   _handleDelete(cardElement) {
     cardElement.remove();
   }
 
-  // Alterna o estado de curtida e retorna o novo estado
   _handleLike(botaoLike, curtido) {
     botaoLike.innerHTML = curtido
       ? '<img src="./images/Vector (1).svg" alt="Curtir">'

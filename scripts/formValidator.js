@@ -19,7 +19,7 @@ export class FormValidator {
       this._submitButtonSelector
     );
 
-    this._setEventListeners(); // Define os ouvintes de eventos
+    this._setEventListeners();
   }
 
   //------------------------ Listeners de Input ------------------------//
@@ -28,8 +28,8 @@ export class FormValidator {
 
     this._inputList.forEach((input) => {
       input.addEventListener("input", () => {
-        this._checkInputValidity(input); // Valida o input atual
-        this._toggleButtonState(); // Atualiza o botão
+        this._checkInputValidity(input);
+        this._toggleButtonState();
       });
     });
   }

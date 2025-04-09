@@ -19,7 +19,7 @@ const textoPerfil = document.querySelector(".main__interacao-texto");
 
 const popupCartao = document.querySelector(".popup__cartao");
 const buttonOpen1 = document.getElementById("botao");
-const closeButton1 = document.querySelector(".popup__close-img");
+const closeButton1 = document.querySelector(".popup__close-cartaobuttonimg");
 const buttonCriar = document.querySelector(".popup__close-cartaobutton");
 
 const mainGrid = document.querySelector(".main__grid");
@@ -51,6 +51,19 @@ const validatorCartao = new FormValidator(
 validatorPerfil.enableValidation();
 validatorCartao.enableValidation();
 
+//------------------------ CRIAÇÃO DO OVERLAY ------------------------//
+const overlay = document.createElement("div");
+overlay.classList.add("overlay");
+document.body.appendChild(overlay);
+
+function showOverlay() {
+  overlay.classList.add("ativo");
+}
+
+function hideOverlay() {
+  overlay.classList.remove("ativo");
+}
+
 //------------------------ CRIAÇÃO DO POPUP DE IMAGEM ------------------------//
 const popupImagem = document.createElement("div");
 popupImagem.classList.add("popup-imagem");
@@ -73,18 +86,22 @@ function openPopup() {
   popup.classList.add("popup__relative");
   inputNome.value = tituloPerfil.textContent;
   inputProfissao.value = textoPerfil.textContent;
+  showOverlay();
 }
 
 function closePopup() {
   popup.classList.remove("popup__relative");
+  hideOverlay();
 }
 
 function openCartao() {
   popupCartao.classList.add("popup__relative-cartao");
+  showOverlay();
 }
 
 function closeCartao() {
   popupCartao.classList.remove("popup__relative-cartao");
+  hideOverlay();
 }
 
 //------------------------ FECHAR POPUPS AO CLICAR FORA ------------------------//
@@ -110,6 +127,7 @@ document.addEventListener("click", function (event) {
     !popupImagem.querySelector(".popup-imagem-conteudo").contains(event.target)
   ) {
     popupImagem.classList.remove("popup-imagem-ativa");
+    hideOverlay();
   }
 });
 
@@ -120,9 +138,18 @@ popupImagem
   .querySelector(".popup-imagem-conteudo")
   .addEventListener("click", (event) => event.stopPropagation());
 
+//------------------------ FUNÇÃO PARA ABRIR A IMAGEM ------------------------/
+function handleCardClick(name, link) {
+  popupImagemImg.src = link;
+  popupImagemImg.alt = name;
+  popupImagemTitulo.textContent = name;
+  popupImagem.classList.add("popup-imagem-ativa");
+  showOverlay();
+}
+
 //------------------------ FUNÇÃO PARA ADICIONAR IMAGEM ------------------------//
 function adicionarImagem(link, titulo) {
-  const card = new Card(titulo, link, ".container");
+  const card = new Card(titulo, link, ".container", handleCardClick);
   const cardElement = card.getCardElement();
   mainGrid.appendChild(cardElement);
 
@@ -161,7 +188,12 @@ const initialCards = [
 //------------------------ FUNÇÃO PARA CARREGAR IMAGENS INICIAIS ------------------------//
 function carregarImagensIniciais() {
   initialCards.forEach((cardData) => {
-    const card = new Card(cardData.name, cardData.link, ".container");
+    const card = new Card(
+      cardData.name,
+      cardData.link,
+      ".container",
+      handleCardClick
+    );
     const cardElement = card.getCardElement();
     mainGrid.appendChild(cardElement);
   });
@@ -182,11 +214,13 @@ function salvarPopup(event) {
 //------------------------ EVENTOS DO POPUP DE IMAGEM ------------------------//
 popupImagemClose.addEventListener("click", () => {
   popupImagem.classList.remove("popup-imagem-ativa");
+  hideOverlay();
 });
 
 popupImagem.addEventListener("click", (event) => {
   if (event.target === popupImagem) {
     popupImagem.classList.remove("popup-imagem-ativa");
+    hideOverlay();
   }
 });
 
@@ -217,5 +251,6 @@ document.addEventListener("keydown", function (event) {
     closePopup();
     closeCartao();
     popupImagem.classList.remove("popup-imagem-ativa");
+    hideOverlay();
   }
 });
