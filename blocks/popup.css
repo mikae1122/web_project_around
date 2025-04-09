@@ -4,6 +4,7 @@
   right: 0;
   left: 0;
   bottom: 0;
+
   display: none;
   justify-content: center;
   align-items: center;
@@ -11,6 +12,7 @@
 
 .popup__relative {
   max-width: 430px;
+
   width: 100%;
   margin: 0 auto;
   display: flex;
