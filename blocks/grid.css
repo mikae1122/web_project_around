@@ -90,14 +90,12 @@
 }
 
 @media (max-width: 320px) {
-  @media (max-width: 320px) {
-    .main__grid {
-      width: 100%;
-      max-width: 100%;
-      margin: 0;
-      padding: 0;
+  .main__grid {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
 
-      gap: 10px;
-    }
+    gap: 10px;
   }
 }
