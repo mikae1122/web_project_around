@@ -65,20 +65,10 @@ function hideOverlay() {
 }
 
 //------------------------ CRIAÇÃO DO POPUP DE IMAGEM ------------------------//
-const popupImagem = document.createElement("div");
-popupImagem.classList.add("popup-imagem");
-popupImagem.innerHTML = `
-  <div class="popup-imagem-conteudo">
-    <button class="popup-imagem-close">
-      <img src="./images/Close-Icon.png" class="popup__close-img" alt="imagem de fechar" />
-    </button>
-    <img class="popup__img" src="" alt="">
-    <p class="popup-imagem-titulo"></p>
-  </div>`;
-document.body.appendChild(popupImagem);
 
+const popupImagem = document.querySelector(".popup-imagem");
 const popupImagemClose = popupImagem.querySelector(".popup-imagem-close");
-const popupImagemImg = popupImagem.querySelector(".popup__img");
+const popupImagemImg = popupImagem.querySelector(".popup-img");
 const popupImagemTitulo = popupImagem.querySelector(".popup-imagem-titulo");
 
 //------------------------ FUNÇÕES DE ABRIR E FECHAR POPUPS ------------------------//
@@ -121,14 +111,6 @@ document.addEventListener("click", function (event) {
   ) {
     closeCartao();
   }
-
-  if (
-    popupImagem.classList.contains("popup-imagem-ativa") &&
-    !popupImagem.querySelector(".popup-imagem-conteudo").contains(event.target)
-  ) {
-    popupImagem.classList.remove("popup-imagem-ativa");
-    hideOverlay();
-  }
 });
 
 //------------------------ BLOQUEAR PROPAGAÇÃO DE EVENTOS DE CLIQUE ------------------------//
@@ -151,6 +133,7 @@ function handleCardClick(name, link) {
 function adicionarImagem(link, titulo) {
   const card = new Card(titulo, link, ".container", handleCardClick);
   const cardElement = card.getCardElement();
+
   mainGrid.prepend(cardElement);
 
   inputLink.value = "";

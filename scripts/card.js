@@ -16,6 +16,7 @@ export class Card {
   getCardElement() {
     const cardElement = this._createCardElement();
     this._addEventListeners(cardElement);
+
     return cardElement;
   }
 
