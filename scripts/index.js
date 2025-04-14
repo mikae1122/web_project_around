@@ -3,6 +3,7 @@ import { FormValidator } from "../component/formValidator.js";
 import { Card } from "../component/card.js";
 import { Section } from "../component/Section.js";
 import { Popup } from "../component/popup.js";
+import { PopupWithImage } from "../component/PopupWithImage.js";
 
 //------------------------ SELETORES DE ELEMENTOS DO DOM ------------------------//
 const formPerfil = document.querySelector(".popup__form");
@@ -17,11 +18,6 @@ const textoPerfil = document.querySelector(".main__interacao-texto");
 const inputLink = document.getElementById("link");
 const inputTitulo = document.getElementById("titulo");
 
-const popupImagem = document.querySelector(".popup-imagem");
-const popupImagemClose = popupImagem.querySelector(".popup-imagem-close");
-const popupImagemImg = popupImagem.querySelector(".popup-img");
-const popupImagemTitulo = popupImagem.querySelector(".popup-imagem-titulo");
-
 //------------------------ POPUP VIA CLASSE ------------------------//
 // Instancie o popup de perfil e o de cartão com a classe correspondente
 const perfilPopup = new Popup(".popup", "popup__relative");
@@ -30,8 +26,27 @@ perfilPopup.setEventListeners(
   ".popup__close-buttonimg"
 );
 
+document
+  .querySelector(".main__interacao-botao")
+  .addEventListener("click", () => {
+    inputNome.value = "Jacques Cousteau";
+    inputProfissao.value = "Explorador";
+  });
+
 const cartaoPopup = new Popup(".popup__cartao", "popup__relative-cartao");
 cartaoPopup.setEventListeners("#botao", ".popup__close-cartaobuttonimg");
+
+//------------------------ POPUP DE IMAGEM ------------------------//
+// Instância do PopupWithImage
+const popupWithImage = new PopupWithImage(
+  ".popup-imagem",
+  "popup-imagem-ativa"
+);
+
+// Função para abrir o popup de imagem
+function handleCardClick(name, link) {
+  popupWithImage.open(name, link); // Chama o open da PopupWithImage
+}
 
 //------------------------ CONFIGURAÇÃO E INICIALIZAÇÃO DO FORMVALIDATOR ------------------------//
 const validatorConfigBase = {
@@ -57,24 +72,6 @@ const validatorCartao = new FormValidator(
 
 validatorPerfil.enableValidation();
 validatorCartao.enableValidation();
-
-//------------------------ POPUP DE IMAGEM ------------------------//
-// Já que o popup de imagem tem comportamento um pouco diferente, mantenha a lógica
-function handleCardClick(name, link) {
-  popupImagemImg.src = link;
-  popupImagemImg.alt = name;
-  popupImagemTitulo.textContent = name;
-  popupImagem.classList.add("popup-imagem-ativa");
-}
-
-popupImagemClose.addEventListener("click", () => {
-  popupImagem.classList.remove("popup-imagem-ativa");
-});
-popupImagem.addEventListener("click", (event) => {
-  if (event.target === popupImagem) {
-    popupImagem.classList.remove("popup-imagem-ativa");
-  }
-});
 
 //------------------------ FUNÇÃO PARA ADICIONAR IMAGEM ------------------------//
 function adicionarImagem(link, titulo) {
@@ -148,3 +145,16 @@ function salvarPopup(event) {
 }
 
 if (formPerfil) formPerfil.addEventListener("submit", salvarPopup);
+
+function salvarCartao(event) {
+  event.preventDefault();
+  const link = inputLink.value.trim();
+  const titulo = inputTitulo.value.trim();
+
+  if (link && titulo) {
+    adicionarImagem(link, titulo);
+    cartaoPopup.close();
+  }
+}
+
+if (formCartao) formCartao.addEventListener("submit", salvarCartao);
