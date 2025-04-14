@@ -2,7 +2,7 @@
 import { FormValidator } from "../component/formValidator.js";
 import { Card } from "../component/card.js";
 import { Section } from "../component/Section.js";
-import { Popup } from "../component/popup.js";
+import { PopupWithForm } from "../component/PopupWithForm.js";
 import { PopupWithImage } from "../component/PopupWithImage.js";
 
 //------------------------ SELETORES DE ELEMENTOS DO DOM ------------------------//
@@ -18,13 +18,21 @@ const textoPerfil = document.querySelector(".main__interacao-texto");
 const inputLink = document.getElementById("link");
 const inputTitulo = document.getElementById("titulo");
 
-//------------------------ POPUP VIA CLASSE ------------------------//
-const perfilPopup = new Popup(".popup", "popup__relative");
+//------------------------ POPUP DE EDITAR PERFIL ------------------------//
+const perfilPopup = new PopupWithForm(
+  ".popup",
+  "popup__relative",
+  ({ nome, profissao }) => {
+    tituloPerfil.textContent = nome;
+    textoPerfil.textContent = profissao;
+  }
+);
 perfilPopup.setEventListeners(
   ".main__interacao-botao",
   ".popup__close-buttonimg"
 );
 
+// Pré-preenche os campos do formulário de editar perfil
 document
   .querySelector(".main__interacao-botao")
   .addEventListener("click", () => {
@@ -32,7 +40,16 @@ document
     inputProfissao.value = "Explorador";
   });
 
-const cartaoPopup = new Popup(".popup__cartao", "popup__relative-cartao");
+//------------------------ POPUP DE ADICIONAR LOCAL ------------------------//
+const cartaoPopup = new PopupWithForm(
+  ".popup__cartao",
+  "popup__relative-cartao",
+  ({ link, titulo }) => {
+    if (link && titulo) {
+      adicionarImagem(link, titulo);
+    }
+  }
+);
 cartaoPopup.setEventListeners("#botao", ".popup__close-cartaobuttonimg");
 
 //------------------------ POPUP DE IMAGEM ------------------------//
@@ -131,30 +148,3 @@ const section = new Section(
 );
 
 section.renderItems();
-
-//------------------------ FUNÇÃO PARA SALVAR O PERFIL ------------------------//
-function salvarPopup(event) {
-  event.preventDefault();
-  const novoNome = inputNome.value.trim();
-  const novaProfissao = inputProfissao.value.trim();
-
-  tituloPerfil.textContent = novoNome;
-  textoPerfil.textContent = novaProfissao;
-
-  perfilPopup.close();
-}
-
-if (formPerfil) formPerfil.addEventListener("submit", salvarPopup);
-
-function salvarCartao(event) {
-  event.preventDefault();
-  const link = inputLink.value.trim();
-  const titulo = inputTitulo.value.trim();
-
-  if (link && titulo) {
-    adicionarImagem(link, titulo);
-    cartaoPopup.close();
-  }
-}
-
-if (formCartao) formCartao.addEventListener("submit", salvarCartao);
