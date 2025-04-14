@@ -4,7 +4,7 @@ import { Card } from "../component/card.js";
 import { Section } from "../component/Section.js";
 import { PopupWithForm } from "../component/PopupWithForm.js";
 import { PopupWithImage } from "../component/PopupWithImage.js";
-import { UserInfo } from "../component/UserInfo.js"; // Importa a classe UserInfo
+import { UserInfo } from "../component/UserInfo.js";
 
 //------------------------ SELETORES DE ELEMENTOS DO DOM ------------------------//
 const formPerfil = document.querySelector(".popup__form");
