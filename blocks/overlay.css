@@ -1,6 +1,6 @@
 .overlay {
   opacity: 0;
-  visibility: hidden;
+  pointer-events: none;
   transition: opacity 0.3s ease;
   position: fixed;
   top: 0;
@@ -11,9 +11,9 @@
   z-index: 10;
 }
 
-.overlay.ativo {
+.overlay-ativo {
   opacity: 1;
-  visibility: visible;
+  pointer-events: all;
 }
 
 .popup,
