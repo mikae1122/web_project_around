@@ -2,6 +2,7 @@
 import { FormValidator } from "../component/formValidator.js";
 import { Card } from "../component/card.js";
 import { Section } from "../component/Section.js";
+import { Popup } from "../component/popup.js";
 
 //------------------------ SELETORES DE ELEMENTOS DO DOM ------------------------//
 const popup = document.querySelector(".popup");
@@ -26,6 +27,9 @@ const buttonCriar = document.querySelector(".popup__close-cartaobutton");
 const mainGrid = document.querySelector(".main__grid");
 const inputLink = document.getElementById("link");
 const inputTitulo = document.getElementById("titulo");
+
+const perfilPopup = new Popup(".popup");
+perfilPopup.setEventListeners(".main__interacao-botao", ".popup__close-button");
 
 //------------------------ CONFIGURAÇÃO E INICIALIZAÇÃO DO FORMVALIDATOR ------------------------//
 const validatorConfigBase = {
