@@ -4,6 +4,7 @@ import { Card } from "../component/card.js";
 import { Section } from "../component/Section.js";
 import { PopupWithForm } from "../component/PopupWithForm.js";
 import { PopupWithImage } from "../component/PopupWithImage.js";
+import { UserInfo } from "../component/UserInfo.js"; // Importa a classe UserInfo
 
 //------------------------ SELETORES DE ELEMENTOS DO DOM ------------------------//
 const formPerfil = document.querySelector(".popup__form");
@@ -18,13 +19,19 @@ const textoPerfil = document.querySelector(".main__interacao-texto");
 const inputLink = document.getElementById("link");
 const inputTitulo = document.getElementById("titulo");
 
+//------------------------ INSTÂNCIA DA CLASSE UserInfo ------------------------//
+// Instanciando a classe UserInfo para gerenciar os dados do usuário
+const userInfo = new UserInfo({
+  nomeSelector: ".main__interacao-titulo",
+  profissaoSelector: ".main__interacao-texto",
+});
+
 //------------------------ POPUP DE EDITAR PERFIL ------------------------//
 const perfilPopup = new PopupWithForm(
   ".popup",
   "popup__relative",
   ({ nome, profissao }) => {
-    tituloPerfil.textContent = nome;
-    textoPerfil.textContent = profissao;
+    userInfo.setUserInfo({ nome, profissao }); // Atualiza as informações do usuário
   }
 );
 perfilPopup.setEventListeners(
@@ -32,12 +39,13 @@ perfilPopup.setEventListeners(
   ".popup__close-buttonimg"
 );
 
-// Pré-preenche os campos do formulário de editar perfil
+// Pré-preenche os campos do formulário de editar perfil com os dados do usuário
 document
   .querySelector(".main__interacao-botao")
   .addEventListener("click", () => {
-    inputNome.value = "Jacques Cousteau";
-    inputProfissao.value = "Explorador";
+    const { nome, profissao } = userInfo.getUserInfo(); // Obtém os dados do usuário
+    inputNome.value = nome;
+    inputProfissao.value = profissao;
   });
 
 //------------------------ POPUP DE ADICIONAR LOCAL ------------------------//
