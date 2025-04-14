@@ -1,8 +1,8 @@
-.popup-imagem {
+.popup__imagem {
   display: none;
 }
 
-.popup-imagem-ativa {
+.popup__imagem-ativa {
   position: fixed;
   top: 0;
   left: 0;
@@ -25,14 +25,14 @@
   max-height: 540px;
 }
 
-.popup-imagem-conteudo {
+.popup__imagem-conteudo {
   position: relative;
   max-width: 75vw;
   max-height: 75vh;
   background: transparent;
 }
 
-.popup-imagem-close {
+.popup__imagem-close {
   position: absolute;
   top: -35px;
   right: -40px;
@@ -40,10 +40,10 @@
   border: none;
   cursor: pointer;
 }
-.popup-imagem-close:hover {
+.popup__imagem-close:hover {
   opacity: 60%;
 }
-.popup-imagem-titulo {
+.popup__imagem-titulo {
   font-family: Inter;
   font-weight: 400;
   font-size: 12px;

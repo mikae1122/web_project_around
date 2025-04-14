@@ -18,6 +18,6 @@
 
 .popup,
 .popup__cartao,
-.popup-imagem {
+.popup__imagem {
   z-index: 20;
 }

@@ -62,12 +62,12 @@ cartaoPopup.setEventListeners("#botao", ".popup__close-cartaobuttonimg");
 
 //------------------------ POPUP DE IMAGEM ------------------------//
 const popupWithImage = new PopupWithImage(
-  ".popup-imagem",
-  "popup-imagem-ativa"
+  ".popup__imagem",
+  "popup__imagem-ativa"
 );
 
 // Adiciona o event listener para o botão de fechar da imagem
-popupWithImage.setEventListeners(null, ".popup-imagem-close");
+popupWithImage.setEventListeners(null, ".popup__imagem-close");
 
 // Função para abrir o popup de imagem
 function handleCardClick(name, link) {

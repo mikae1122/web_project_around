@@ -95,7 +95,7 @@
 .input-error {
   border-bottom: 2px solid red;
 }
-.error-message {
+.error_message {
   color: red;
   font-family: Inter;
   font-weight: 400;
