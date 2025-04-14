@@ -19,7 +19,6 @@ const inputLink = document.getElementById("link");
 const inputTitulo = document.getElementById("titulo");
 
 //------------------------ POPUP VIA CLASSE ------------------------//
-// Instancie o popup de perfil e o de cartão com a classe correspondente
 const perfilPopup = new Popup(".popup", "popup__relative");
 perfilPopup.setEventListeners(
   ".main__interacao-botao",
@@ -37,15 +36,17 @@ const cartaoPopup = new Popup(".popup__cartao", "popup__relative-cartao");
 cartaoPopup.setEventListeners("#botao", ".popup__close-cartaobuttonimg");
 
 //------------------------ POPUP DE IMAGEM ------------------------//
-// Instância do PopupWithImage
 const popupWithImage = new PopupWithImage(
   ".popup-imagem",
   "popup-imagem-ativa"
 );
 
+// Adiciona o event listener para o botão de fechar da imagem
+popupWithImage.setEventListeners(null, ".popup-imagem-close");
+
 // Função para abrir o popup de imagem
 function handleCardClick(name, link) {
-  popupWithImage.open(name, link); // Chama o open da PopupWithImage
+  popupWithImage.open(name, link);
 }
 
 //------------------------ CONFIGURAÇÃO E INICIALIZAÇÃO DO FORMVALIDATOR ------------------------//
@@ -140,7 +141,6 @@ function salvarPopup(event) {
   tituloPerfil.textContent = novoNome;
   textoPerfil.textContent = novaProfissao;
 
-  // Usa o método do popup para fechar
   perfilPopup.close();
 }
 

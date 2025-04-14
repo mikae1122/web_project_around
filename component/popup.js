@@ -28,9 +28,8 @@ export class Popup {
       this.close();
     }
   }
-
   _handleOutsideClick(event) {
-    if (!this._popup.contains(event.target)) {
+    if (event.target === this._popup) {
       this.close();
     }
   }
