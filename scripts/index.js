@@ -232,7 +232,6 @@ if (buttonOpen1) buttonOpen1.addEventListener("click", openCartao);
 if (closeButton1) closeButton1.addEventListener("click", closeCartao);
 
 //------------------------ EVENTO PARA CARREGAR IMAGENS AO INICIAR O SITE ------------------------//
-window.addEventListener("load", carregarImagensIniciais);
 
 //------------------------ FECHAR POPUPS COM A TECLA ESC ------------------------//
 document.addEventListener("keydown", function (event) {
