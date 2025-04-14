@@ -1,6 +1,7 @@
 //------------------------ IMPORTAÇÕES ------------------------//
-import { FormValidator } from "./formValidator.js";
-import { Card } from "./card.js";
+import { FormValidator } from "../component/formValidator.js";
+import { Card } from "../component/card.js";
+import { Section } from "../component/Section.js";
 
 //------------------------ SELETORES DE ELEMENTOS DO DOM ------------------------//
 const popup = document.querySelector(".popup");
@@ -133,8 +134,7 @@ function handleCardClick(name, link) {
 function adicionarImagem(link, titulo) {
   const card = new Card(titulo, link, ".container", handleCardClick);
   const cardElement = card.getCardElement();
-
-  mainGrid.prepend(cardElement);
+  section.addItem(cardElement);
 
   inputLink.value = "";
   inputTitulo.value = "";
@@ -169,18 +169,24 @@ const initialCards = [
 ];
 
 //------------------------ FUNÇÃO PARA CARREGAR IMAGENS INICIAIS ------------------------//
-function carregarImagensIniciais() {
-  initialCards.forEach((cardData) => {
-    const card = new Card(
-      cardData.name,
-      cardData.link,
-      ".container",
-      handleCardClick
-    );
-    const cardElement = card.getCardElement();
-    mainGrid.appendChild(cardElement);
-  });
-}
+const section = new Section(
+  {
+    items: initialCards,
+    renderer: (cardData) => {
+      const card = new Card(
+        cardData.name,
+        cardData.link,
+        ".container",
+        handleCardClick
+      );
+      const cardElement = card.getCardElement();
+      section.addItem(cardElement);
+    },
+  },
+  ".main__grid"
+);
+
+section.renderItems();
 
 //------------------------ FUNÇÃO PARA SALVAR O PERFIL ------------------------//
 function salvarPopup(event) {
