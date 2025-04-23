@@ -4,12 +4,14 @@ export class Card {
   _imageLink;
   _templateSelector;
   _handleImageClick;
+  _id; // ID do card (vindo da API)
 
-  constructor(title, imageLink, templateSelector, handleImageClick) {
+  constructor(title, imageLink, templateSelector, handleImageClick, id) {
     this._title = title;
     this._imageLink = imageLink;
     this._templateSelector = templateSelector;
     this._handleImageClick = handleImageClick;
+    this._id = id; // ID do card recebido da API
   }
 
   // Método público que retorna o card pronto com eventos
@@ -22,7 +24,6 @@ export class Card {
 
   //------------------------ Criação do elemento Card ------------------------//
   _createCardElement() {
-    // Criação da estrutura principal do card
     const container = document.createElement("div");
     container.classList.add("container");
 
@@ -32,29 +33,24 @@ export class Card {
     const botoesContainer = document.createElement("div");
     botoesContainer.classList.add("imagem-container-img");
 
-    // Imagem do card
     const imagem = document.createElement("img");
     imagem.src = this._imageLink;
     imagem.alt = this._title;
     imagem.classList.add("main__grid-img");
 
-    // Título (descrição) da imagem
     const descricao = document.createElement("p");
     descricao.textContent = this._title;
     descricao.classList.add("main__grid-titulo");
 
-    // Botão de deletar card
     const botaoDelete = document.createElement("button");
     botaoDelete.innerHTML =
       '<img src="./images/Trash@2x.png" alt="Delete" class="main__delete-img">';
     botaoDelete.classList.add("btn-delete");
 
-    // Botão de curtir (like)
     const botaoLike = document.createElement("button");
     botaoLike.innerHTML = '<img src="./images/Vector (1).svg" alt="Curtir">';
     botaoLike.classList.add("btn-like");
 
-    // Montagem da estrutura de botões e imagem
     botoesContainer.appendChild(botaoDelete);
     botoesContainer.appendChild(imagem);
 
@@ -64,7 +60,6 @@ export class Card {
     container.appendChild(imagemContainer);
     container.appendChild(botoesContainer);
 
-    // Armazenando elementos no container para acesso posterior
     container._image = imagem;
     container._deleteBtn = botaoDelete;
     container._likeBtn = botaoLike;
@@ -80,19 +75,16 @@ export class Card {
 
     let curtido = false;
 
-    // Clique na imagem abre o popup
     imagem.addEventListener("click", () => {
       if (this._handleImageClick) {
         this._handleImageClick(this._title, this._imageLink);
       }
     });
 
-    // Clique no botão de deletar remove o card
     botaoDelete.addEventListener("click", () => {
       this._handleDelete(cardElement);
     });
 
-    // Clique no botão de curtir alterna o estado
     botaoLike.addEventListener("click", () => {
       curtido = this._handleLike(botaoLike, curtido);
     });
@@ -100,7 +92,28 @@ export class Card {
 
   //------------------------ Ações dos botões ------------------------//
   _handleDelete(cardElement) {
-    cardElement.remove();
+    if (this._id) {
+      fetch(`https://around-api.pt-br.tripleten-services.com/v1/cards/${this._id}`, {
+        method: "DELETE",
+        headers: {
+          authorization: "582fc07f-fe23-477a-994d-8aefd966d480", // seu token
+        },
+      })
+        .then(res => {
+          if (res.ok) {
+            cardElement.remove();
+            console.log("Card deletado da API com sucesso!");
+          } else {
+            console.error("Erro ao deletar card da API. Status:", res.status);
+          }
+        })
+        .catch(err => {
+          console.error("Erro ao deletar card:", err);
+        });
+    } else {
+      console.log("Card local (não tem ID) removido do DOM");
+      cardElement.remove();
+    }
   }
 
   _handleLike(botaoLike, curtido) {
@@ -108,5 +121,34 @@ export class Card {
       ? '<img src="./images/Vector (1).svg" alt="Curtir">'
       : '<img src="./images/Union.png" alt="Curtido">';
     return !curtido;
+  }
+
+  //------------------------ Método para salvar o card na API ------------------------//
+  saveCard() {
+    const cardData = {
+      name: this._title,
+      link: this._imageLink,
+    };
+
+    fetch("https://around-api.pt-br.tripleten-services.com/v1/cards", {
+      method: "POST",
+      headers: {
+        authorization: "582fc07f-fe23-477a-994d-8aefd966d480", // seu token
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(cardData),
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data._id) {
+          this._id = data._id; // Armazena o ID gerado pelo servidor
+          console.log("Card salvo com sucesso!", data);
+        } else {
+          console.error("Erro ao salvar card:", data);
+        }
+      })
+      .catch(err => {
+        console.error("Erro ao salvar card:", err);
+      });
   }
 }
