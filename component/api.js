@@ -16,13 +16,6 @@ export function getUserInfo() {
 
 export function getInitialCards() {
   return fetch(`${config.baseUrl}/cards`, {
-    headers: config.headers
-  }).then(res => res.json());
-}
-
-export function updateUserInfo({ name, about }) {
-  return fetch(`${config.baseUrl}/users/me`, {
-    method: "PATCH",
     headers: config.headers,
     body: JSON.stringify({ name, about })
   }).then(res => res.json());
