@@ -16,11 +16,7 @@
 
       <div class="main">
         <section class="main__interacao">
-          <img
-            src=""
-            class="main__interacao-img"
-            alt="imagem do avatar"
-          />
+          <img src="" class="main__interacao-img" alt="imagem do avatar" />
           <div class="main__interacao-botoes">
             <div class="main__interacao-textos">
               <h1 class="main__interacao-titulo">Jacques Cousteau</h1>
@@ -159,7 +155,17 @@
         </div>
       </div>
     </div>
-
+    <div class="popup__confirm">
+      <div class="popup__container">
+        <button class="popup__close-cartaobuttonimg" type="button">
+          <img src="./images/Close-Icon.png" alt="Botao de fechamento" />
+        </button>
+        <h2 class="popup__title">Tem certeza?</h2>
+        <form class="popup__form" name="confirm-form" novalidate>
+          <button class="popup__save-button" type="submit">Sim</button>
+        </form>
+      </div>
+    </div>
     <script type="module" src="./scripts/index.js"></script>
   </body>
 </html>

@@ -13,6 +13,11 @@ import {
   addCard,
 } from "../component/api.js";
 
+import PopupWithConfirmation from "../component/PopupWithConfirmation.js";
+
+const confirmPopup = new PopupWithConfirmation(".popup__confirm", "ativa");
+confirmPopup.setEventListeners();
+
 //------------------------ SELETORES DE ELEMENTOS DO DOM ------------------------//
 const formPerfil = document.querySelector(".popup__form");
 const formCartao = document.querySelector(".popup__form-cartao");
@@ -65,6 +70,7 @@ document
   });
 
 //------------------------ POPUP DE ADICIONAR LOCAL ------------------------//
+
 const cartaoPopup = new PopupWithForm(
   ".popup__cartao",
   "popup__relative-cartao",
@@ -77,7 +83,10 @@ const cartaoPopup = new PopupWithForm(
             data.link,
             ".container",
             handleCardClick,
-            data._id
+            data._id,
+            () => {
+              confirmPopup.open();
+            }
           );
           const cardElement = card.getCardElement();
           section.addItem(cardElement);
@@ -135,7 +144,10 @@ const section = new Section(
         cardData.link,
         ".container",
         handleCardClick,
-        cardData._id
+        cardData._id,
+        () => {
+          confirmPopup.open();
+        }
       );
       const cardElement = card.getCardElement();
       section.addItem(cardElement);

@@ -4,14 +4,22 @@ export class Card {
   _imageLink;
   _templateSelector;
   _handleImageClick;
-  _id; // ID do card (vindo da API)
+  _id; // ID do card (vindo da APIs)
 
-  constructor(title, imageLink, templateSelector, handleImageClick, id) {
+  constructor(
+    title,
+    imageLink,
+    templateSelector,
+    handleImageClick,
+    id,
+    confirmPopup
+  ) {
     this._title = title;
     this._imageLink = imageLink;
     this._templateSelector = templateSelector;
     this._handleImageClick = handleImageClick;
-    this._id = id; // ID do card recebido da API
+    this._id = id;
+    this._confirmPopup = confirmPopup;
   }
 
   // Método público que retorna o card pronto com eventos
@@ -82,7 +90,11 @@ export class Card {
     });
 
     botaoDelete.addEventListener("click", () => {
-      this._handleDelete(cardElement);
+      //  this._confirmPopup.setSubmitAction(() => {
+      //     this._handleDelete(cardElement); // executa só se confirmar
+      //     this._confirmPopup.close(); // fecha o popup após excluir
+      //   });
+      this._confirmPopup();
     });
 
     botaoLike.addEventListener("click", () => {
@@ -93,13 +105,16 @@ export class Card {
   //------------------------ Ações dos botões ------------------------//
   _handleDelete(cardElement) {
     if (this._id) {
-      fetch(`https://around-api.pt-br.tripleten-services.com/v1/cards/${this._id}`, {
-        method: "DELETE",
-        headers: {
-          authorization: "582fc07f-fe23-477a-994d-8aefd966d480", // seu token
-        },
-      })
-        .then(res => {
+      fetch(
+        `https://around-api.pt-br.tripleten-services.com/v1/cards/${this._id}`,
+        {
+          method: "DELETE",
+          headers: {
+            authorization: "582fc07f-fe23-477a-994d-8aefd966d480", // seu token
+          },
+        }
+      )
+        .then((res) => {
           if (res.ok) {
             cardElement.remove();
             console.log("Card deletado da API com sucesso!");
@@ -107,7 +122,7 @@ export class Card {
             console.error("Erro ao deletar card da API. Status:", res.status);
           }
         })
-        .catch(err => {
+        .catch((err) => {
           console.error("Erro ao deletar card:", err);
         });
     } else {
@@ -138,8 +153,8 @@ export class Card {
       },
       body: JSON.stringify(cardData),
     })
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         if (data._id) {
           this._id = data._id; // Armazena o ID gerado pelo servidor
           console.log("Card salvo com sucesso!", data);
@@ -147,7 +162,7 @@ export class Card {
           console.error("Erro ao salvar card:", data);
         }
       })
-      .catch(err => {
+      .catch((err) => {
         console.error("Erro ao salvar card:", err);
       });
   }

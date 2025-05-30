@@ -4,7 +4,7 @@ export class Popup {
   constructor(popupSelector, activeClass) {
     this._popup = document.querySelector(popupSelector);
     this._activeClass = activeClass;
-
+    console.log(activeClass);
     this._handleEscClose = this._handleEscClose.bind(this);
     this._handleOutsideClick = this._handleOutsideClick.bind(this);
   }
@@ -44,6 +44,7 @@ export class Popup {
 
     if (close) {
       close.addEventListener("click", (event) => {
+        console.log("entrou");
         event.stopPropagation();
         this.close();
       });
