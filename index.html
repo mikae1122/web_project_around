@@ -156,14 +156,20 @@
       </div>
     </div>
     <div class="popup__confirm">
-      <div class="popup__container">
-        <button class="popup__close-cartaobuttonimg" type="button">
-          <img src="./images/Close-Icon.png" alt="Botao de fechamento" />
-        </button>
-        <h2 class="popup__title">Tem certeza?</h2>
-        <form class="popup__form" name="confirm-form" novalidate>
+      <div class="popup__confirm-conteiner">
+        <div class="popup__button-cartao">
+          <button class="popup__close-cartaobuttonimg" type="button">
+            <img
+              src="./images/Close-Icon.png"
+              class="popup__close-img"
+              alt="Botao de fechamento"
+            />
+          </button>
+        </div>
+        <div class="popup__container">
+          <h2 class="popup__title">Tem certeza?</h2>
           <button class="popup__save-button" type="submit">Sim</button>
-        </form>
+        </div>
       </div>
     </div>
     <script type="module" src="./scripts/index.js"></script>

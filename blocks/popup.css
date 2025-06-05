@@ -9,21 +9,6 @@
   justify-content: center;
   align-items: center;
 }
-.popup__confirm {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-
-  display: none;
-  justify-content: center;
-  align-items: center;
-}
-.ativa {
-  z-index: 20;
-  display: flex;
-}
 
 .popup__relative {
   max-width: 430px;

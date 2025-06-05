@@ -55,3 +55,14 @@ export function updateUserInfo({ name, about }) {
     return res.json();
   });
 }
+export function handledelete({ cardid }) {
+  return fetch(`$/cards/${cardid}`, {
+    method: "delete",
+    headers: config.headers,
+  }).then((res) => {
+    if (!res.ok) {
+      console.log("Deu erro no delete");
+    }
+    return res.json();
+  });
+}

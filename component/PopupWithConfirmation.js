@@ -7,7 +7,7 @@ export default class PopupWithConfirmation extends Popup {
 
   setEventListeners() {
     super.setEventListeners(
-      ".main__interacao-botao",
+      ".popup__confirm",
       ".popup__close-cartaobuttonimg"
     );
     this._popup.addEventListener("submit", (evt) => {

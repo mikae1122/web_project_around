@@ -1,0 +1,58 @@
+.popup__confirm {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup__confirm-conteiner {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row-reverse;
+}
+.popup__container {
+  color: #000000;
+  background: white;
+  width: 430px;
+  height: 181px;
+  border-radius: 3%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.popup__save-button {
+  margin-left: 50px;
+  margin-right: 50px;
+  background-color: #000000;
+  color: white;
+  border: none;
+  font-family: Inter;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21.78px;
+}
+.popup__save-button:hover {
+  cursor: pointer;
+  opacity: 60%;
+}
+popup__close-cartaobuttonimg {
+  background: rgba(2, 2, 2, 0);
+  border: none;
+  position: absolute;
+}
+.popup__title {
+  font-family: Inter;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 100%;
+  padding-left: 50px;
+}
+.ativa {
+  z-index: 20;
+  display: flex;
+}

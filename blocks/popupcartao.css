@@ -28,6 +28,8 @@
   background: rgba(2, 2, 2, 0);
   border: none;
   position: absolute;
+  margin-bottom: 27%;
+  margin-left: 59%;
 }
 .popup__close-cartaobuttonimg:hover {
   cursor: pointer;
