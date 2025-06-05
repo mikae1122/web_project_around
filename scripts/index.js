@@ -18,6 +18,8 @@ import PopupWithConfirmation from "../component/PopupWithConfirmation.js";
 const confirmPopup = new PopupWithConfirmation(".popup__confirm", "ativa");
 confirmPopup.setEventListeners();
 
+import { handledelete } from "../component/api.js";
+
 //------------------------ SELETORES DE ELEMENTOS DO DOM ------------------------//
 const formPerfil = document.querySelector(".popup__form");
 const formCartao = document.querySelector(".popup__form-cartao");
@@ -73,7 +75,7 @@ document
 
 const cartaoPopup = new PopupWithForm(
   ".popup__cartao",
-  "popup__relative-cartao",
+  "popup__relative-ativo",
   ({ link, titulo }) => {
     if (link && titulo) {
       addCard({ name: titulo, link: link })
@@ -145,10 +147,24 @@ const section = new Section(
         ".container",
         handleCardClick,
         cardData._id,
-        () => {
+
+        (cardDelete) => {
+          console.log(cardDelete);
+          confirmPopup.setSubmitAction(() => {
+            handledelete({ cardid: cardData._id })
+              .then(() => {
+                cardDelete._handleDelete();
+                confirmPopup.close();
+              })
+              .catch((err) => {
+                console.error("Erro ao deletar o card:", err);
+              });
+          });
+
           confirmPopup.open();
         }
       );
+
       const cardElement = card.getCardElement();
       section.addItem(cardElement);
     },

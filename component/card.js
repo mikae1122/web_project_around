@@ -25,6 +25,7 @@ export class Card {
   // Método público que retorna o card pronto com eventos
   getCardElement() {
     const cardElement = this._createCardElement();
+    this._cardElement = cardElement;
     this._addEventListeners(cardElement);
 
     return cardElement;
@@ -94,7 +95,7 @@ export class Card {
       //     this._handleDelete(cardElement); // executa só se confirmar
       //     this._confirmPopup.close(); // fecha o popup após excluir
       //   });
-      this._confirmPopup();
+      this._confirmPopup(this);
     });
 
     botaoLike.addEventListener("click", () => {
@@ -103,32 +104,8 @@ export class Card {
   }
 
   //------------------------ Ações dos botões ------------------------//
-  _handleDelete(cardElement) {
-    if (this._id) {
-      fetch(
-        `https://around-api.pt-br.tripleten-services.com/v1/cards/${this._id}`,
-        {
-          method: "DELETE",
-          headers: {
-            authorization: "582fc07f-fe23-477a-994d-8aefd966d480", // seu token
-          },
-        }
-      )
-        .then((res) => {
-          if (res.ok) {
-            cardElement.remove();
-            console.log("Card deletado da API com sucesso!");
-          } else {
-            console.error("Erro ao deletar card da API. Status:", res.status);
-          }
-        })
-        .catch((err) => {
-          console.error("Erro ao deletar card:", err);
-        });
-    } else {
-      console.log("Card local (não tem ID) removido do DOM");
-      cardElement.remove();
-    }
+  _handleDelete(cardDelete) {
+    this._cardElement.remove();
   }
 
   _handleLike(botaoLike, curtido) {

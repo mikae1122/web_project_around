@@ -56,12 +56,12 @@ export function updateUserInfo({ name, about }) {
   });
 }
 export function handledelete({ cardid }) {
-  return fetch(`$/cards/${cardid}`, {
-    method: "delete",
+  return fetch(`${config.baseUrl}/cards/${cardid}`, {
+    method: "DELETE",
     headers: config.headers,
   }).then((res) => {
     if (!res.ok) {
-      console.log("Deu erro no delete");
+      throw new Error(`Erro ao deletar o card: ${res.status}`);
     }
     return res.json();
   });

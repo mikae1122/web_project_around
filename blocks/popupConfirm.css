@@ -13,6 +13,7 @@
 .popup__confirm-conteiner {
   margin: 0 auto;
   display: flex;
+  position: relative;
   flex-direction: row-reverse;
 }
 .popup__container {
@@ -28,8 +29,8 @@
 .popup__save-button {
   margin-left: 50px;
   margin-right: 50px;
-  background-color: #000000;
-  color: white;
+  background: #000000;
+  color: rgb(253, 253, 253);
   border: none;
   font-family: Inter;
   font-size: 18px;
@@ -43,6 +44,7 @@
 popup__close-cartaobuttonimg {
   background: rgba(2, 2, 2, 0);
   border: none;
+  all: unset;
   position: absolute;
 }
 .popup__title {
