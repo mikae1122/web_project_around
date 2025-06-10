@@ -100,7 +100,11 @@ const cartaoPopup = new PopupWithForm(
     }
   }
 );
-cartaoPopup.setEventListeners("#botao", ".popup__close-cartaobuttonimg");
+cartaoPopup.setEventListeners(
+  "#botao",
+  ".popup__close-cartaobuttonimg",
+  ".botao__de-fechar"
+);
 
 //------------------------ POPUP DE IMAGEM ------------------------//
 const popupWithImage = new PopupWithImage(

@@ -106,7 +106,14 @@
 .input-error {
   border-bottom: 2px solid red;
 }
-
+.popup__relative-ativo {
+  max-width: 430px;
+  width: 100%;
+  border-radius: 10px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row-reverse;
+}
 @media (max-width: 500px) {
   .popup__relative-cartao {
     max-width: 90vw;
